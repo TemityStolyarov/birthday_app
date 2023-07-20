@@ -2,173 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
-import 'package:mobyte_birthday/widgets/list_entertainments.dart';
-
-class RoundedButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final String text;
-  final double? borderRadius;
-  final Color? buttonColor;
-  final double? elevation;
-  final double? width;
-  final double? height;
-  final double? fontSize;
-
-  const RoundedButton({
-    super.key,
-    required this.onPressed,
-    required this.text,
-    this.borderRadius,
-    this.buttonColor,
-    this.elevation,
-    this.width,
-    this.height,
-    this.fontSize,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        elevation: elevation ?? 0,
-        fixedSize: Size(width ?? 156.sp, height ?? 50.sp),
-        backgroundColor: buttonColor ?? primaryAccentColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 15),
-        ),
-      ),
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: fontSize ?? 16.sp,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
-}
-
-class Header extends StatelessWidget {
-  final String text;
-  final double? fontSize;
-  final double? topPadding;
-  final double? bottomPadding;
-
-  const Header({
-    super.key,
-    required this.text,
-    this.fontSize,
-    this.topPadding,
-    this.bottomPadding,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: topPadding ?? 0,
-        bottom: bottomPadding ?? 0,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: fontSize ?? 24.sp,
-          fontFamily: 'YesevaOne',
-        ),
-      ),
-    );
-  }
-}
-
-class MenuGrid extends StatelessWidget {
-  final List list;
-  const MenuGrid({super.key, required this.list});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GridView.builder(
-          semanticChildCount: 6,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 8.sp, // 8 = 30 - 22
-            crossAxisSpacing: 31.sp,
-            childAspectRatio: 140.sp / 162.sp, // 162 = 140 + 22
-          ),
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: index % 2 == 0
-                        ? BorderRadius.only(
-                            bottomLeft: Radius.circular(25.sp),
-                            topRight: Radius.circular(25.sp),
-                          )
-                        : BorderRadius.only(
-                            topLeft: Radius.circular(25.sp),
-                            bottomRight: Radius.circular(25.sp),
-                          ),
-                    child: Image.asset(
-                      'assets/images/image$index.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    list[index],
-                    style: TextStyle(fontSize: 14.sp),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class EntertaimentsList extends StatelessWidget {
-  final List titles;
-  final List subtitles;
-
-  const EntertaimentsList(
-      {super.key, required this.titles, required this.subtitles});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (BuildContext context, int index) {
-        return Entertaiment(
-          title: titles[index],
-          subtitle: subtitles[index],
-          onPressedTile: () {
-            //TODO
-          },
-          onPressedRight: () {
-            //TODO
-          },
-          image: 'assets/images/frame$index.png',
-        );
-      },
-      itemCount: titles.length == subtitles.length ? titles.length : 0,
-      separatorBuilder: (BuildContext context, int index) {
-        return SizedBox(height: 16.sp);
-      },
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      scrollDirection: Axis.vertical,
-    );
-  }
-}
+import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/entertainments_list.dart';
+import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/menu_grid.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -303,6 +138,83 @@ class MainPage extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class RoundedButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String text;
+  final double? borderRadius;
+  final Color? buttonColor;
+  final double? elevation;
+  final double? width;
+  final double? height;
+  final double? fontSize;
+
+  const RoundedButton({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    this.borderRadius,
+    this.buttonColor,
+    this.elevation,
+    this.width,
+    this.height,
+    this.fontSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        elevation: elevation ?? 0,
+        fixedSize: Size(width ?? 156.sp, height ?? 50.sp),
+        backgroundColor: buttonColor ?? primaryAccentColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius ?? 15),
+        ),
+      ),
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize ?? 16.sp,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  final String text;
+  final double? fontSize;
+  final double? topPadding;
+  final double? bottomPadding;
+
+  const Header({
+    super.key,
+    required this.text,
+    this.fontSize,
+    this.topPadding,
+    this.bottomPadding,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: topPadding ?? 0,
+        bottom: bottomPadding ?? 0,
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize ?? 24.sp,
+          fontFamily: 'YesevaOne',
+        ),
       ),
     );
   }

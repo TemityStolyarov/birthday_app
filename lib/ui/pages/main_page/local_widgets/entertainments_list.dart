@@ -69,3 +69,37 @@ class Entertaiment extends StatelessWidget {
     );
   }
 }
+
+class EntertaimentsList extends StatelessWidget {
+  final List titles;
+  final List subtitles;
+
+  const EntertaimentsList(
+      {super.key, required this.titles, required this.subtitles});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemBuilder: (BuildContext context, int index) {
+        return Entertaiment(
+          title: titles[index],
+          subtitle: subtitles[index],
+          onPressedTile: () {
+            //TODO
+          },
+          onPressedRight: () {
+            //TODO
+          },
+          image: 'assets/images/frame$index.png',
+        );
+      },
+      itemCount: titles.length == subtitles.length ? titles.length : 0,
+      separatorBuilder: (BuildContext context, int index) {
+        return SizedBox(height: 16.sp);
+      },
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+    );
+  }
+}
