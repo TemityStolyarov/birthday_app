@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobyte_birthday/constants.dart';
+import 'package:mobyte_birthday/core/constants.dart';
 
 class BdayAppBar extends StatelessWidget {
   final Widget? child;
