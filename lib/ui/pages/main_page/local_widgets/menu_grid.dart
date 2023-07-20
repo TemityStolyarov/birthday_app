@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MenuGrid extends StatelessWidget {
+  final bool isWrapped;
   final List list;
-  const MenuGrid({super.key, required this.list});
+  const MenuGrid({super.key, required this.list, required this.isWrapped});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,10 @@ class MenuGrid extends StatelessWidget {
             crossAxisSpacing: 31.sp,
             childAspectRatio: 140.sp / 162.sp, // 162 = 140 + 22
           ),
-          itemCount: 6,
+          itemCount: isWrapped ? 2 : 6,
           itemBuilder: (context, index) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: ClipRRect(
@@ -40,12 +42,9 @@ class MenuGrid extends StatelessWidget {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    list[index],
-                    style: TextStyle(fontSize: 14.sp),
-                  ),
+                Text(
+                  list[index],
+                  style: TextStyle(fontSize: 14.sp),
                 ),
               ],
             );

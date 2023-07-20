@@ -73,9 +73,14 @@ class Entertaiment extends StatelessWidget {
 class EntertaimentsList extends StatelessWidget {
   final List titles;
   final List subtitles;
+  final bool isWrapped;
 
-  const EntertaimentsList(
-      {super.key, required this.titles, required this.subtitles});
+  const EntertaimentsList({
+    super.key,
+    required this.titles,
+    required this.subtitles,
+    required this.isWrapped,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +98,7 @@ class EntertaimentsList extends StatelessWidget {
           image: 'assets/images/frame$index.png',
         );
       },
-      itemCount: titles.length == subtitles.length ? titles.length : 0,
+      itemCount: isWrapped ? 2 : titles.length,
       separatorBuilder: (BuildContext context, int index) {
         return SizedBox(height: 16.sp);
       },

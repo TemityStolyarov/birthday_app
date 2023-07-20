@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.8.4
+  yandex_mapkit: ^3.3.3
 
 dev_dependencies:
   flutter_test:

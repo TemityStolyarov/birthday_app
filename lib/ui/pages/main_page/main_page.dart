@@ -4,9 +4,30 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
 import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/entertainments_list.dart';
 import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/menu_grid.dart';
+// import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/yandex_map.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  bool _wrappedMenu = false;
+  bool _wrappedEntertainments = true;
+
+  void onMenuWrapperTap() {
+    setState(() {
+      _wrappedMenu = !_wrappedMenu;
+    });
+  }
+
+  void onEntertainmentsWrapperTap() {
+    setState(() {
+      _wrappedEntertainments = !_wrappedEntertainments;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +90,10 @@ class MainPage extends StatelessWidget {
                             left: 16.sp,
                             right: 10.sp,
                             top: 16.sp,
-                            bottom: 12.sp,
                           ),
-                          child: const MenuGrid(
-                            list: [
+                          child: MenuGrid(
+                            isWrapped: _wrappedMenu,
+                            list: const [
                               'Канапе',
                               'Сырная тарелка',
                               'Шашлык на мангале',
@@ -82,31 +103,64 @@ class MainPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Text('Свернуть'),
+                        TextButton(
+                          style: const ButtonStyle(
+                              overlayColor:
+                                  MaterialStatePropertyAll(Colors.transparent)),
+                          child: Text(
+                            _wrappedMenu ? 'Развернуть ▼' : 'Свернуть ▲',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          onPressed: () {
+                            onMenuWrapperTap();
+                          },
+                        ),
                         Header(
                           text: 'Развлечения',
                           topPadding: 30.sp,
                           bottomPadding: 16.sp,
                         ),
-                        const EntertaimentsList(
-                          titles: [
+                        EntertaimentsList(
+                          isWrapped: _wrappedEntertainments,
+                          titles: const [
                             'Настольные игры',
                             'Бассейн',
+                            'Экстремальные прятки'
                           ],
-                          subtitles: [
+                          subtitles: const [
                             'Мафия, уно, домино, экивоки и другие',
                             'Два бассейна с подогревом',
+                            'В полной темноте и без ограничений'
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 16.sp),
-                          child: Text('Развернуть'),
+                        TextButton(
+                          style: const ButtonStyle(
+                              overlayColor:
+                                  MaterialStatePropertyAll(Colors.transparent)),
+                          child: Text(
+                            _wrappedEntertainments
+                                ? 'Развернуть ▼'
+                                : 'Свернуть ▲',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          onPressed: () {
+                            onEntertainmentsWrapperTap();
+                          },
                         ),
                         Header(
                           text: 'Место',
                           topPadding: 30.sp,
                           bottomPadding: 16.sp,
                         ),
+                        // const YandexMapkit(),
                         SizedBox(
                           width: 343.sp,
                           height: 246.sp,
