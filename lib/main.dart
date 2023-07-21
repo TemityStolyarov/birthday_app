@@ -4,8 +4,8 @@ import 'package:mobyte_birthday/ui/pages/main_page/main_page.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 void main() {
-  runApp(const MainApp());
   AndroidYandexMap.useAndroidViewSurface = false;
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {

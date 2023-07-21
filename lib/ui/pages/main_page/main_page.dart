@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/carousel.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/entertainments_list.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/menu_grid.dart';
-// import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/yandex_map.dart';
+import 'package:mobyte_birthday/ui/pages/main_page/widgets/carousel.dart';
+import 'package:mobyte_birthday/ui/pages/main_page/widgets/entertainments_list.dart';
+import 'package:mobyte_birthday/ui/pages/main_page/widgets/menu_grid.dart';
+import 'package:mobyte_birthday/ui/pages/main_page/widgets/yandex_map.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -157,14 +158,15 @@ class _MainPageState extends State<MainPage> {
                           topPadding: 30.sp,
                           bottomPadding: 16.sp,
                         ),
-                        // const YandexMapkit(),
-                        SizedBox(
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                            color: secondaryFontColor,
+                            width: 1.sp,
+                          )),
                           width: 343.sp,
                           height: 246.sp,
-                          child: Image.asset(
-                            'assets/images/place.png',
-                            fit: BoxFit.cover,
-                          ),
+                          child: const YandexMapkit(),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 4.sp, bottom: 10.sp),
@@ -174,11 +176,18 @@ class _MainPageState extends State<MainPage> {
                                 fontSize: 14.sp, color: secondaryFontColor),
                           ),
                         ),
-                        Text(
-                          'Перейти на сайт места',
-                          style: TextStyle(
-                              fontSize: 14.sp,
-                              decoration: TextDecoration.underline),
+                        TextButton(
+                          style: const ButtonStyle(
+                              overlayColor:
+                                  MaterialStatePropertyAll(Colors.transparent)),
+                          child: Text(
+                            'Перейти на сайт места',
+                            style: TextStyle(
+                                fontSize: 14.sp,
+                                decoration: TextDecoration.underline),
+                          ),
+                          onPressed: () => launchUrl(
+                              Uri.parse('https://yandex.ru/maps/-/CPgiUbr')),
                         ),
                         SizedBox(height: 89.sp),
                       ],

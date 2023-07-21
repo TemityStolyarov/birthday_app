@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobyte_birthday/core/constants.dart';
 
 class Entertaiment extends StatelessWidget {
   final String title;
@@ -48,7 +49,8 @@ class Entertaiment extends StatelessWidget {
                   ),
                   Text(
                     subtitle,
-                    style: TextStyle(fontSize: 14.sp),
+                    style:
+                        TextStyle(fontSize: 14.sp, color: secondaryFontColor),
                   ),
                 ],
               ),
