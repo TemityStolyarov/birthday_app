@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobyte_birthday/core/constants.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/main_page.dart';
+import 'package:mobyte_birthday/routes/app_routes.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 void main() {
@@ -13,14 +13,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appRouter = AppRouter();
     return MaterialApp(
+      onGenerateRoute: appRouter.onGenerateRoute,
       debugShowMaterialGrid: false, //TODO: убрать debug grid
       theme: ThemeData(
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Jost',
       ),
       debugShowCheckedModeBanner: false,
-      home: const MainPage(),
+      initialRoute: '/',
     );
   }
 }
