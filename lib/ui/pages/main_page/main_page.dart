@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
+import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/carousel.dart';
 import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/entertainments_list.dart';
 import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/menu_grid.dart';
 // import 'package:mobyte_birthday/ui/pages/main_page/local_widgets/yandex_map.dart';
@@ -51,12 +52,8 @@ class _MainPageState extends State<MainPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(
-                    width: 375.sp,
                     height: 250.sp,
-                    child: Image.asset(
-                      'assets/images/image.png',
-                      fit: BoxFit.cover,
-                    ),
+                    child: const ImageCarousel(),
                   ),
                   Padding(
                     padding: EdgeInsets.all(16.sp),
