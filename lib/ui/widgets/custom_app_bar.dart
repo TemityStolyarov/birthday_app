@@ -14,7 +14,7 @@ class CustomAppBar extends StatelessWidget {
     return SafeArea(
       child: Container(
         height: 48.sp,
-        padding: EdgeInsets.symmetric(horizontal: 16.sp),
+        padding: EdgeInsets.symmetric(horizontal: 8.sp),
         decoration: BoxDecoration(
           color: backgroundColor,
           boxShadow: [
@@ -39,15 +39,14 @@ class CustomAppBar extends StatelessWidget {
                 },
               ),
             ),
-            Expanded(
-              child: Align(
-                child: Text(
-                  'Вишлист',
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w600,
-                    color: const Color.fromRGBO(0, 0, 0, 1),
-                  ),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Вишлист',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color.fromRGBO(0, 0, 0, 1),
                 ),
               ),
             ),

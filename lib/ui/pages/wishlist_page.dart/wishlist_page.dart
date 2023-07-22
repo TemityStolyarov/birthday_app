@@ -13,25 +13,31 @@ class WishlistPage extends StatefulWidget {
   State<WishlistPage> createState() => _WishlistPageState();
 }
 
-class _WishlistPageState extends State<WishlistPage> {
-  List<Map<String, dynamic>> gifts = [
-    {
-      'title': 'Playstation 5',
-      'subtitle':
-          'https://www.google.com/search?q=playstation+5&sxsrf=AB5stBiFPJBUztpMwkGvTVG6kq5lMceUHQ%3A1689963425657&source=hp&ei=ocu6ZOO-JcCXhbIPudKMUA&iflsig=AD69kcEAAAAAZLrZsZ_OKKPYaoLdqpzQir8m6f6goAMZ&ved=0ahUKEwijk6uttKCAAxXAS0EAHTkpAwoQ4dUDCAk&uact=5&oq=playstation+5&gs_lp=Egdnd3Mtd2l6Ig1wbGF5c3RhdGlvbiA1SHJQD1gPcAB4AJABAJgBAKABAKoBALgBA8gBAPgBAQ&sclient=gws-wiz',
-      'reserved': false,
-    },
-    {
-      'title': 'GTA V',
-      'subtitle':
-          'https://www.google.com/search?q=gta+5&sxsrf=AB5stBitMo3vDWCxtMDEoHcC78scyUopjg%3A1689963429553&ei=pcu6ZNKtIa2whbIPz86QqAE&ved=0ahUKEwiSlJuvtKCAAxUtWEEAHU8nBBUQ4dUDCA8&uact=5&oq=gta+5&gs_lp=Egxnd3Mtd2l6LXNlcnAiBWd0YSA1MgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQABiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgUQABiABDIFEAAYgAQyFhAuGIoFGEMYlwUY3AQY3gQY4ATYAQFIrgdQAFivBXAAeAGQAQCYAY8CoAGWBqoBBTAuMi4yuAEDyAEA-AEBwgINEC4YigUYxwEY0QMYQ8ICCxAuGIAEGMcBGNEDwgIcEC4YigUYxwEY0QMYQxiXBRjcBBjeBBjgBNgBAeIDBBgAIEGIBgG6BgYIARABGBQ&sclient=gws-wiz-serp',
-      'reserved': true,
-    },
-  ];
+List<Map<String, dynamic>> gifts = [
+  {
+    'title': 'Playstation 5',
+    'subtitle':
+        'https://www.google.com/search?q=playstation+5&sxsrf=AB5stBiFPJBUztpMwkGvTVG6kq5lMceUHQ%3A1689963425657&source=hp&ei=ocu6ZOO-JcCXhbIPudKMUA&iflsig=AD69kcEAAAAAZLrZsZ_OKKPYaoLdqpzQir8m6f6goAMZ&ved=0ahUKEwijk6uttKCAAxXAS0EAHTkpAwoQ4dUDCAk&uact=5&oq=playstation+5&gs_lp=Egdnd3Mtd2l6Ig1wbGF5c3RhdGlvbiA1SHJQD1gPcAB4AJABAJgBAKABAKoBALgBA8gBAPgBAQ&sclient=gws-wiz',
+    'reserved': false,
+  },
+  {
+    'title': 'GTA V',
+    'subtitle':
+        'https://www.google.com/search?q=gta+5&sxsrf=AB5stBitMo3vDWCxtMDEoHcC78scyUopjg%3A1689963429553&ei=pcu6ZNKtIa2whbIPz86QqAE&ved=0ahUKEwiSlJuvtKCAAxUtWEEAHU8nBBUQ4dUDCA8&uact=5&oq=gta+5&gs_lp=Egxnd3Mtd2l6LXNlcnAiBWd0YSA1MgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQABiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgUQABiABDIFEAAYgAQyFhAuGIoFGEMYlwUY3AQY3gQY4ATYAQFIrgdQAFivBXAAeAGQAQCYAY8CoAGWBqoBBTAuMi4yuAEDyAEA-AEBwgINEC4YigUYxwEY0QMYQ8ICCxAuGIAEGMcBGNEDwgIcEC4YigUYxwEY0QMYQxiXBRjcBBjeBBjgBNgBAeIDBBgAIEGIBgG6BgYIARABGBQ&sclient=gws-wiz-serp',
+    'reserved': true,
+  },
+];
 
+class _WishlistPageState extends State<WishlistPage> {
   void onRecervedToggle(int index) {
     setState(() {
       gifts[index]['reserved'] = !gifts[index]['reserved'];
+    });
+  }
+
+  void onAddGift(Map<String, dynamic> gift) {
+    setState(() {
+      gifts.add(gift);
     });
   }
 
@@ -47,14 +53,14 @@ class _WishlistPageState extends State<WishlistPage> {
             padding: EdgeInsets.only(right: 16.sp),
             child: CustomFloatingButton(
               size: 84.spMin,
-              onTap: () async {
+              onTap: () {
                 _showSlidingPanel(context);
               },
             ),
           ),
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(48.sp),
-            child: CustomAppBar(text: 'Вишлист'),
+            child: const CustomAppBar(text: 'Вишлист'),
           ),
           resizeToAvoidBottomInset: false,
           backgroundColor: backgroundColor,
@@ -92,7 +98,9 @@ class _WishlistPageState extends State<WishlistPage> {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return const AddGiftPanel();
+        return AddGiftPanel(
+          onAddGift: onAddGift,
+        );
       },
     );
   }

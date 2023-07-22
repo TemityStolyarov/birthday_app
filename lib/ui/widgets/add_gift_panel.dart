@@ -3,8 +3,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
 import 'package:mobyte_birthday/ui/pages/main_page/main_page.dart';
 
-class AddGiftPanel extends StatelessWidget {
-  const AddGiftPanel({super.key});
+class AddGiftPanel extends StatefulWidget {
+  final Function(Map<String, dynamic>) onAddGift;
+
+  const AddGiftPanel({
+    Key? key,
+    required this.onAddGift,
+  }) : super(key: key);
+
+  @override
+  State<AddGiftPanel> createState() => _AddGiftPanelState();
+}
+
+class _AddGiftPanelState extends State<AddGiftPanel> {
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _subtitleController = TextEditingController();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _subtitleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +44,7 @@ class AddGiftPanel extends StatelessWidget {
             ),
             SizedBox(height: 20.sp),
             TextField(
+              controller: _titleController,
               style: TextStyle(
                 fontFamily: 'Jost',
                 fontSize: 16.sp,
@@ -48,6 +69,7 @@ class AddGiftPanel extends StatelessWidget {
             ),
             SizedBox(height: 12.sp),
             TextField(
+              controller: _subtitleController,
               style: TextStyle(
                 fontFamily: 'Jost',
                 fontSize: 16.sp,
@@ -76,6 +98,11 @@ class AddGiftPanel extends StatelessWidget {
               width: 181.sp,
               height: 50.sp,
               onPressed: () {
+                widget.onAddGift({
+                  'title': _titleController.text,
+                  'subtitle': _subtitleController.text,
+                  'reserved': false,
+                });
                 Navigator.pop(context);
               },
               text: 'Добавить подарок',

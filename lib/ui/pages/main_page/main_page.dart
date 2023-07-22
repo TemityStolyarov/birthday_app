@@ -84,6 +84,7 @@ class _MainPageState extends State<MainPage> {
                           ],
                         ),
                         _Header(
+                          fontSize: 24.sp,
                           text: 'Меню',
                           topPadding: 30.sp,
                         ),
@@ -122,6 +123,7 @@ class _MainPageState extends State<MainPage> {
                           },
                         ),
                         _Header(
+                          fontSize: 24.sp,
                           text: 'Развлечения',
                           topPadding: 30.sp,
                           bottomPadding: 16.sp,
@@ -158,6 +160,7 @@ class _MainPageState extends State<MainPage> {
                           },
                         ),
                         _Header(
+                          fontSize: 24.sp,
                           text: 'Место',
                           topPadding: 30.sp,
                           bottomPadding: 16.sp,
@@ -259,7 +262,6 @@ class _Header extends StatelessWidget {
   final double? bottomPadding;
 
   const _Header({
-    super.key,
     required this.text,
     this.fontSize,
     this.topPadding,
@@ -276,7 +278,7 @@ class _Header extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          fontSize: fontSize ?? 24.sp,
+          fontSize: fontSize,
           fontFamily: 'YesevaOne',
         ),
       ),
