@@ -47,14 +47,14 @@ class PlusIcon extends StatelessWidget {
 class _PlusIconPainter extends CustomPainter {
   final Paint _paint = Paint()
     ..color = Colors.white
-    ..strokeWidth = 10.sp
+    ..strokeWidth = 10.spMin
     ..strokeCap = StrokeCap.round;
 
   @override
   void paint(Canvas canvas, Size size) {
     final double centerX = size.width / 2;
     final double centerY = size.height / 2;
-    final double armLength = 16.sp;
+    final double armLength = 16.spMin;
 
     canvas.drawLine(
       Offset(centerX - armLength, centerY),

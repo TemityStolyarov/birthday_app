@@ -13,12 +13,12 @@ class GuestPage extends StatefulWidget {
 
 List<Map<String, dynamic>> persons = [
   {
-    'name': 'Playstation 5',
+    'name': 'Иван Иванов',
     'age': '19 лет',
     'profession': 'Студент',
   },
   {
-    'name': 'GTA V',
+    'name': 'Марья Морская',
     'age': '23 года',
     'profession': 'Дизайнер',
   },
@@ -53,8 +53,26 @@ class _GuestPageState extends State<GuestPage> {
                 Padding(
                   padding: EdgeInsets.all(16.sp),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '2 гостя',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                          Text(
+                            'По имени      ▼',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16.sp),
                       PersonsList(
                         persons: persons,
                         //TODO onImageChange: onImageChange,
@@ -113,29 +131,40 @@ class Person extends StatelessWidget {
     return Stack(
       children: [
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    name,
-                    style:
-                        TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    age,
-                    style:
-                        TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    profession,
-                    style: TextStyle(
-                        fontSize: 14.sp, decoration: TextDecoration.underline),
-                  ),
-                ],
+            SizedBox(
+              width: 64.sp,
+              height: 64.sp,
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/person.png',
+                  fit: BoxFit.cover,
+                ),
               ),
+            ),
+            SizedBox(width: 12.sp),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  age,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                  ),
+                ),
+                Text(
+                  profession,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
