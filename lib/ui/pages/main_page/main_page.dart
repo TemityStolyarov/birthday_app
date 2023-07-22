@@ -32,6 +32,11 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
@@ -43,9 +48,7 @@ class _MainPageState extends State<MainPage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor,
       body: ScreenUtilInit(
-        designSize: const Size(375, 812), // Размеры макета
-        //minTextAdapt: true,
-        //splitScreenMode: true,
+        designSize: const Size(375, 812),
         builder: (context, child) {
           return SafeArea(
             child: SingleChildScrollView(

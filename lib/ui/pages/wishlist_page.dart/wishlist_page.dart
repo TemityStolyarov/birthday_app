@@ -44,9 +44,7 @@ class _WishlistPageState extends State<WishlistPage> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812), // Размеры макета
-      //minTextAdapt: true,
-      //splitScreenMode: true,
+      designSize: const Size(375, 812),
       builder: (context, child) {
         return Scaffold(
           floatingActionButton: Padding(

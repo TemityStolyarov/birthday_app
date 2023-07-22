@@ -35,14 +35,15 @@ class CustomAppBar extends StatelessWidget {
                 color: secondaryColor,
                 iconSize: 18.sp,
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil('/', (route) => false);
                 },
               ),
             ),
             Align(
               alignment: Alignment.center,
               child: Text(
-                'Вишлист',
+                text,
                 style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
