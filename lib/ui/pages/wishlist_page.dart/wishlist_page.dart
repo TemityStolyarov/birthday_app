@@ -1,10 +1,200 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobyte_birthday/core/constants.dart';
+import 'package:mobyte_birthday/ui/widgets/add_gift_panel.dart';
+import 'package:mobyte_birthday/ui/widgets/custom_app_bar.dart';
+import 'package:mobyte_birthday/ui/widgets/custom_floating_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class WishlistPage extends StatelessWidget {
-  const WishlistPage({super.key});
+class WishlistPage extends StatefulWidget {
+  const WishlistPage({Key? key}) : super(key: key);
+
+  @override
+  State<WishlistPage> createState() => _WishlistPageState();
+}
+
+class _WishlistPageState extends State<WishlistPage> {
+  List<Map<String, dynamic>> gifts = [
+    {
+      'title': 'Playstation 5',
+      'subtitle':
+          'https://www.google.com/search?q=playstation+5&sxsrf=AB5stBiFPJBUztpMwkGvTVG6kq5lMceUHQ%3A1689963425657&source=hp&ei=ocu6ZOO-JcCXhbIPudKMUA&iflsig=AD69kcEAAAAAZLrZsZ_OKKPYaoLdqpzQir8m6f6goAMZ&ved=0ahUKEwijk6uttKCAAxXAS0EAHTkpAwoQ4dUDCAk&uact=5&oq=playstation+5&gs_lp=Egdnd3Mtd2l6Ig1wbGF5c3RhdGlvbiA1SHJQD1gPcAB4AJABAJgBAKABAKoBALgBA8gBAPgBAQ&sclient=gws-wiz',
+      'reserved': false,
+    },
+    {
+      'title': 'GTA V',
+      'subtitle':
+          'https://www.google.com/search?q=gta+5&sxsrf=AB5stBitMo3vDWCxtMDEoHcC78scyUopjg%3A1689963429553&ei=pcu6ZNKtIa2whbIPz86QqAE&ved=0ahUKEwiSlJuvtKCAAxUtWEEAHU8nBBUQ4dUDCA8&uact=5&oq=gta+5&gs_lp=Egxnd3Mtd2l6LXNlcnAiBWd0YSA1MgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQABiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgUQABiABDIFEAAYgAQyFhAuGIoFGEMYlwUY3AQY3gQY4ATYAQFIrgdQAFivBXAAeAGQAQCYAY8CoAGWBqoBBTAuMi4yuAEDyAEA-AEBwgINEC4YigUYxwEY0QMYQ8ICCxAuGIAEGMcBGNEDwgIcEC4YigUYxwEY0QMYQxiXBRjcBBjeBBjgBNgBAeIDBBgAIEGIBgG6BgYIARABGBQ&sclient=gws-wiz-serp',
+      'reserved': true,
+    },
+  ];
+
+  void onRecervedToggle(int index) {
+    setState(() {
+      gifts[index]['reserved'] = !gifts[index]['reserved'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ScreenUtilInit(
+      designSize: const Size(375, 812), // Размеры макета
+      //minTextAdapt: true,
+      //splitScreenMode: true,
+      builder: (context, child) {
+        return Scaffold(
+          floatingActionButton: Padding(
+            padding: EdgeInsets.only(right: 16.sp),
+            child: CustomFloatingButton(
+              size: 84.spMin,
+              onTap: () async {
+                _showSlidingPanel(context);
+              },
+            ),
+          ),
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(48.sp),
+            child: CustomAppBar(text: 'Вишлист'),
+          ),
+          resizeToAvoidBottomInset: false,
+          backgroundColor: backgroundColor,
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16.sp),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GiftsList(
+                        gifts: gifts,
+                        onReservedToggle: onRecervedToggle,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showSlidingPanel(BuildContext context) {
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(12.sp),
+        ),
+      ),
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return const AddGiftPanel();
+      },
+    );
+  }
+}
+
+class Gift extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final bool reserved;
+  final VoidCallback onTap;
+
+  const Gift({
+    Key? key,
+    required this.title,
+    required this.subtitle,
+    required this.reserved,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        //InkWell
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style:
+                        TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                  ),
+                  GestureDetector(
+                    onTap: () => launchUrl(Uri.parse(subtitle)),
+                    child: Text(
+                      'Ссылка',
+                      style: TextStyle(
+                          fontSize: 14.sp,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.circular(20.r),
+              child: Ink(
+                width: 20.sp,
+                height: 20.sp,
+                decoration: BoxDecoration(
+                  color: reserved
+                      ? reservationPointSelectedColor
+                      : reservationPointUnselectedColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class GiftsList extends StatefulWidget {
+  final List<Map<String, dynamic>> gifts;
+  final Function(int) onReservedToggle;
+
+  const GiftsList({
+    Key? key,
+    required this.gifts,
+    required this.onReservedToggle,
+  }) : super(key: key);
+
+  @override
+  State<GiftsList> createState() => _GiftsListState();
+}
+
+class _GiftsListState extends State<GiftsList> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemBuilder: (BuildContext context, int index) {
+        return Gift(
+          title: widget.gifts[index]['title'],
+          subtitle: widget.gifts[index]['subtitle'],
+          reserved: widget.gifts[index]['reserved'],
+          onTap: () => widget.onReservedToggle(index),
+        );
+      },
+      itemCount: widget.gifts.length,
+      separatorBuilder: (BuildContext context, int index) {
+        return SizedBox(height: 16.sp);
+      },
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+    );
   }
 }

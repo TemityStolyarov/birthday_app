@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/widgets/carousel.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/widgets/entertainments_list.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/widgets/menu_grid.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/widgets/yandex_map.dart';
+import 'package:mobyte_birthday/ui/widgets/carousel.dart';
+import 'package:mobyte_birthday/ui/widgets/entertainments_list.dart';
+import 'package:mobyte_birthday/ui/widgets/menu_grid.dart';
+import 'package:mobyte_birthday/ui/widgets/yandex_map.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainPage extends StatefulWidget {
@@ -70,16 +70,20 @@ class _MainPageState extends State<MainPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             RoundedButton(
-                              onPressed: () {/* TODO */},
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('/guests');
+                              },
                               text: 'Список гостей',
                             ),
                             RoundedButton(
-                              onPressed: () {/* TODO */},
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('/wishlist');
+                              },
                               text: 'Вишлист',
                             ),
                           ],
                         ),
-                        Header(
+                        _Header(
                           text: 'Меню',
                           topPadding: 30.sp,
                         ),
@@ -117,7 +121,7 @@ class _MainPageState extends State<MainPage> {
                             onMenuWrapperTap();
                           },
                         ),
-                        Header(
+                        _Header(
                           text: 'Развлечения',
                           topPadding: 30.sp,
                           bottomPadding: 16.sp,
@@ -153,7 +157,7 @@ class _MainPageState extends State<MainPage> {
                             onEntertainmentsWrapperTap();
                           },
                         ),
-                        Header(
+                        _Header(
                           text: 'Место',
                           topPadding: 30.sp,
                           bottomPadding: 16.sp,
@@ -248,13 +252,13 @@ class RoundedButton extends StatelessWidget {
   }
 }
 
-class Header extends StatelessWidget {
+class _Header extends StatelessWidget {
   final String text;
   final double? fontSize;
   final double? topPadding;
   final double? bottomPadding;
 
-  const Header({
+  const _Header({
     super.key,
     required this.text,
     this.fontSize,

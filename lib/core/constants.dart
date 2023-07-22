@@ -4,6 +4,8 @@ const primaryAccentColor = Color(0xFFFDAC07);
 const secondaryAccentColor = Color(0xFF47802B);
 
 const backgroundColor = Color(0xFFFAFBF9);
+const secondaryColor = Color(0xFFC0C0CA);
+const tertiaryColor = Color(0xFFE7E7EF);
 const textInputBackbroundColor = Color(0xFFF2F8EF);
 
 const primaryFontColor = Color(0x00000000);
