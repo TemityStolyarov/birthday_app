@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/main_page.dart';
+import 'package:mobyte_birthday/ui/pages/main_page.dart';
 
 class AddGiftPanel extends StatefulWidget {
   final Function(Map<String, dynamic>) onAddGift;

@@ -36,7 +36,7 @@ class _GuestPageState extends State<GuestPage> {
             child: CustomFloatingButton(
               size: 84.spMin,
               onTap: () {
-                _showSlidingPanel(context);
+                _showSlidingPanel(context, 'AddPersonPanel');
               },
             ),
           ),
@@ -58,16 +58,21 @@ class _GuestPageState extends State<GuestPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '2 гостя',
+                            '${persons.length} гостя',
                             style: TextStyle(
                               fontSize: 14.sp,
                             ),
                           ),
-                          Text(
-                            'По имени      ▼',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              decoration: TextDecoration.underline,
+                          GestureDetector(
+                            onTap: () {
+                              _showSlidingPanel(context, 'Sorting');
+                            },
+                            child: Text(
+                              'По имени      ▼',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
                           ),
                         ],
@@ -84,25 +89,6 @@ class _GuestPageState extends State<GuestPage> {
             ),
           ),
         );
-      },
-    );
-  }
-
-  void _showSlidingPanel(BuildContext context) {
-    showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(12.sp),
-        ),
-      ),
-      context: context,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return Container();
-        //TODO
-        // AddPersonPanel(
-        //   onAddPerson: onAddPerson,
-        // );
       },
     );
   }
@@ -133,13 +119,18 @@ class Person extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: 64.sp,
-              height: 64.sp,
-              child: ClipOval(
-                child: Image.asset(
-                  'assets/images/person.png',
-                  fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () {
+                _showSlidingPanel(context, 'Uploading photo');
+              },
+              child: SizedBox(
+                width: 64.sp,
+                height: 64.sp,
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/images/person.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -156,12 +147,14 @@ class Person extends StatelessWidget {
                   age,
                   style: TextStyle(
                     fontSize: 12.sp,
+                    color: secondaryFontColor,
                   ),
                 ),
                 Text(
                   profession,
                   style: TextStyle(
                     fontSize: 14.sp,
+                    color: secondaryFontColor,
                   ),
                 ),
               ],
@@ -206,4 +199,26 @@ class _PersonsListState extends State<PersonsList> {
       scrollDirection: Axis.vertical,
     );
   }
+}
+
+void _showSlidingPanel(BuildContext context, String text) {
+  showModalBottomSheet(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(12.sp),
+      ),
+    ),
+    context: context,
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      return SizedBox(
+        height: 140.sp,
+        child: Center(child: Text('TODO: $text')),
+      );
+      //TODO
+      // AddPersonPanel(
+      //   onAddPerson: onAddPerson,
+      // );
+    },
+  );
 }

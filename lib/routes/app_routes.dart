@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobyte_birthday/routes/name_routes.dart';
-import 'package:mobyte_birthday/ui/pages/guests_page/guests_page.dart';
-import 'package:mobyte_birthday/ui/pages/main_page/main_page.dart';
-import 'package:mobyte_birthday/ui/pages/wishlist_page.dart/wishlist_page.dart';
+import 'package:mobyte_birthday/ui/pages/guests_page.dart';
+import 'package:mobyte_birthday/ui/pages/main_page.dart';
+import 'package:mobyte_birthday/ui/pages/wishlist_page.dart';
 
 class AppRouter {
   Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {

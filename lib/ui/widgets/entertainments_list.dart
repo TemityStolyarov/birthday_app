@@ -11,12 +11,10 @@ class Entertaiment extends StatelessWidget {
     super.key,
     required this.title,
     required this.subtitle,
-    required this.onPressedTile,
     required this.onPressedRight,
     required this.image,
   });
 
-  final VoidCallback onPressedTile;
   final VoidCallback onPressedRight;
 
   @override
@@ -91,11 +89,8 @@ class EntertaimentsList extends StatelessWidget {
         return Entertaiment(
           title: titles[index],
           subtitle: subtitles[index],
-          onPressedTile: () {
-            //TODO
-          },
           onPressedRight: () {
-            //TODO
+            //TODO animation
           },
           image: 'assets/images/frame$index.png',
         );

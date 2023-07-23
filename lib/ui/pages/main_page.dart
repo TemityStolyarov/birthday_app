@@ -31,6 +31,15 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
+  final dishNames = [
+    'Канапе',
+    'Сырная тарелка',
+    'Шашлык на мангале',
+    'Морепродукты',
+    'Свежие фрукты',
+    'Авторские лимонады',
+  ];
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -94,14 +103,7 @@ class _MainPageState extends State<MainPage> {
                           ),
                           child: MenuGrid(
                             isWrapped: _wrappedMenu,
-                            list: const [
-                              'Канапе',
-                              'Сырная тарелка',
-                              'Шашлык на мангале',
-                              'Морепродукты',
-                              'Свежие фрукты',
-                              'Авторские лимонады',
-                            ],
+                            list: dishNames,
                           ),
                         ),
                         TextButton(
