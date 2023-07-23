@@ -9,67 +9,62 @@ class MenuGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedCrossFade(
-      firstChild: _buildGrid(isWrapped),
-      secondChild: _buildGrid(isWrapped),
+    return AnimatedSize(
+      curve: Curves.easeOutCubic,
+      alignment: Alignment.topCenter,
       duration: const Duration(milliseconds: 300),
-      crossFadeState:
-          isWrapped ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-    );
-  }
-
-  Widget _buildGrid(bool isWrapped) {
-    return Column(
-      children: [
-        GridView.builder(
-          semanticChildCount: list.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 8.sp, // 8 = 30 - 22
-            crossAxisSpacing: 31.sp,
-            childAspectRatio: 140.sp / 162.sp, // 162 = 140 + 22
-          ),
-          itemCount: isWrapped ? 2 : list.length,
-          itemBuilder: (context, index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            DishDetailPage(dishName: list[index], index: index),
-                      ));
-                    },
-                    child: ClipRRect(
-                      borderRadius: index % 2 == 0
-                          ? BorderRadius.only(
-                              bottomLeft: Radius.circular(25.sp),
-                              topRight: Radius.circular(25.sp),
-                            )
-                          : BorderRadius.only(
-                              topLeft: Radius.circular(25.sp),
-                              bottomRight: Radius.circular(25.sp),
-                            ),
-                      child: Image.asset(
-                        'assets/images/image$index.jpg',
-                        fit: BoxFit.cover,
+      child: Column(
+        children: [
+          GridView.builder(
+            semanticChildCount: list.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 8.sp, // 8 = 30 - 22
+              crossAxisSpacing: 31.sp,
+              childAspectRatio: 140.sp / 162.sp, // 162 = 140 + 22
+            ),
+            itemCount: isWrapped ? 2 : list.length,
+            itemBuilder: (context, index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DishDetailPage(
+                              dishName: list[index], index: index),
+                        ));
+                      },
+                      child: ClipRRect(
+                        borderRadius: index % 2 == 0
+                            ? BorderRadius.only(
+                                bottomLeft: Radius.circular(25.sp),
+                                topRight: Radius.circular(25.sp),
+                              )
+                            : BorderRadius.only(
+                                topLeft: Radius.circular(25.sp),
+                                bottomRight: Radius.circular(25.sp),
+                              ),
+                        child: Image.asset(
+                          'assets/images/image$index.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Text(
-                  list[index],
-                  style: TextStyle(fontSize: 14.sp),
-                ),
-              ],
-            );
-          },
-        ),
-      ],
+                  Text(
+                    list[index],
+                    style: TextStyle(fontSize: 14.sp),
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

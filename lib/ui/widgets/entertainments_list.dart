@@ -83,34 +83,29 @@ class EntertaimentsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedCrossFade(
-      firstChild: _buildList(isWrapped),
-      secondChild: _buildList(isWrapped),
+    return AnimatedSize(
+      curve: Curves.easeOut,
+      alignment: Alignment.topCenter,
       duration: const Duration(milliseconds: 300),
-      crossFadeState:
-          isWrapped ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-    );
-  }
-
-  Widget _buildList(bool isWrapped) {
-    return ListView.separated(
-      itemBuilder: (BuildContext context, int index) {
-        return Entertaiment(
-          title: titles[index],
-          subtitle: subtitles[index],
-          onPressedRight: () {
-            //TODO animation
-          },
-          image: 'assets/images/frame$index.png',
-        );
-      },
-      itemCount: isWrapped ? 2 : titles.length,
-      separatorBuilder: (BuildContext context, int index) {
-        return SizedBox(height: 16.sp);
-      },
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      scrollDirection: Axis.vertical,
+      child: ListView.separated(
+        itemBuilder: (BuildContext context, int index) {
+          return Entertaiment(
+            title: titles[index],
+            subtitle: subtitles[index],
+            onPressedRight: () {
+              //TODO animation
+            },
+            image: 'assets/images/frame$index.png',
+          );
+        },
+        itemCount: isWrapped ? 2 : titles.length,
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(height: 16.sp);
+        },
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
+      ),
     );
   }
 }
