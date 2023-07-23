@@ -16,13 +16,10 @@ class MainApp extends StatelessWidget {
     final appRouter = AppRouter();
     return MaterialApp(
       onGenerateRoute: appRouter.onGenerateRoute,
-      debugShowMaterialGrid: false, //TODO: убрать debug grid
       theme: ThemeData(
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Jost',
       ),
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
     );
   }
 }
