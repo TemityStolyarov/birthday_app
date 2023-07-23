@@ -7,7 +7,7 @@ import 'package:mobyte_birthday/feachures/main/widgets/entertainments_list.dart'
 import 'package:mobyte_birthday/feachures/main/widgets/menu_grid.dart';
 import 'package:mobyte_birthday/feachures/main/widgets/yandex_map.dart';
 import 'package:mobyte_birthday/feachures/widgets/custon_rounded_button.dart';
-import 'package:mobyte_birthday/routes/name_routes.dart';
+import 'package:mobyte_birthday/core/utils/routes/name_routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainPage extends StatefulWidget {

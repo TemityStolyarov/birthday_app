@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobyte_birthday/core/constants.dart';
-import 'package:mobyte_birthday/routes/app_routes.dart';
+import 'package:mobyte_birthday/core/utils/routes/app_routes.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 void main() {

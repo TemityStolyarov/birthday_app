@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobyte_birthday/feachures/dish_detail/pages/dish_detail_page.dart';
 import 'package:mobyte_birthday/feachures/main/models/dish_name_model.dart';
-import 'package:mobyte_birthday/routes/name_routes.dart';
+import 'package:mobyte_birthday/core/utils/routes/name_routes.dart';
 import 'package:mobyte_birthday/feachures/guest/pages/guests_page.dart';
 import 'package:mobyte_birthday/feachures/main/pages/main_page.dart';
 import 'package:mobyte_birthday/feachures/wishlist/pages/wishlist_page.dart';
