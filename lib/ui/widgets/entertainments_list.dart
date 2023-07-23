@@ -21,7 +21,6 @@ class Entertaiment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        //InkWell
         Row(
           children: [
             SizedBox(
@@ -76,14 +75,24 @@ class EntertaimentsList extends StatelessWidget {
   final bool isWrapped;
 
   const EntertaimentsList({
-    super.key,
+    Key? key,
     required this.titles,
     required this.subtitles,
     required this.isWrapped,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return AnimatedCrossFade(
+      firstChild: _buildList(isWrapped),
+      secondChild: _buildList(isWrapped),
+      duration: const Duration(milliseconds: 300),
+      crossFadeState:
+          isWrapped ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+    );
+  }
+
+  Widget _buildList(bool isWrapped) {
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         return Entertaiment(

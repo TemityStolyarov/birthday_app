@@ -9,6 +9,16 @@ class MenuGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return AnimatedCrossFade(
+      firstChild: _buildGrid(isWrapped),
+      secondChild: _buildGrid(isWrapped),
+      duration: const Duration(milliseconds: 300),
+      crossFadeState:
+          isWrapped ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+    );
+  }
+
+  Widget _buildGrid(bool isWrapped) {
     return Column(
       children: [
         GridView.builder(
