@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
@@ -18,6 +20,9 @@ class YandexMapKit extends StatelessWidget {
       width: 343.sp,
       height: 246.sp,
       child: YandexMap(
+        gestureRecognizers: {
+          Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer())
+        },
         mapObjects: [
           PlacemarkMapObject(
             point: const Point(
