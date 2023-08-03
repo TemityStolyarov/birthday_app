@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
+import 'package:mobyte_birthday/feachures/widgets/custom_text_field.dart';
 import 'package:mobyte_birthday/feachures/widgets/custon_rounded_button.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 
 class AddGiftPanel extends StatefulWidget {
   final Function(Map<String, dynamic>) onAddGift;
@@ -51,56 +53,14 @@ class _AddGiftPanelState extends State<AddGiftPanel> {
               ),
             ),
             SizedBox(height: 20.sp),
-            TextField(
+            CustomTextField(
               controller: _titleController,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
-              ),
-              cursorColor: secondaryAccentColor,
-              decoration: InputDecoration(
-                filled: true,
-                border: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.sp),
-                  borderSide: BorderSide.none,
-                ),
-                labelText: 'Название',
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: secondaryFontColor,
-                ),
-                fillColor: textInputBackbroundColor,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8.sp,
-                  horizontal: 12.sp,
-                ),
-              ),
+              text: S.of(context).gift_name,
             ),
             SizedBox(height: 12.sp),
-            TextField(
+            CustomTextField(
               controller: _subtitleController,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
-              ),
-              cursorColor: secondaryAccentColor,
-              decoration: InputDecoration(
-                filled: true,
-                border: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.sp),
-                  borderSide: BorderSide.none,
-                ),
-                labelText: 'Ссылка',
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: secondaryFontColor,
-                ),
-                fillColor: textInputBackbroundColor,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8.sp,
-                  horizontal: 12.sp,
-                ),
-              ),
+              text: S.of(context).gift_link,
             ),
             SizedBox(height: 50.sp),
             RoundedButton(
@@ -111,7 +71,7 @@ class _AddGiftPanelState extends State<AddGiftPanel> {
                 widget.onAddGift(injectGiftModel());
                 Navigator.pop(context);
               },
-              text: 'Добавить подарок',
+              text: S.of(context).add_gift,
               buttonColor: secondaryAccentColor,
             ),
             SizedBox(height: 351.sp),

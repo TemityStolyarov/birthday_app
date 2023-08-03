@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
+import 'package:mobyte_birthday/feachures/widgets/custom_text_field.dart';
 import 'package:mobyte_birthday/feachures/widgets/custon_rounded_button.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 
 class AddGuestPanel extends StatefulWidget {
   final Function(Map<String, dynamic>) onAddPerson;
@@ -63,134 +65,29 @@ class _AddGiftPanelState extends State<AddGuestPanel> {
               ),
             ),
             SizedBox(height: 20.sp),
-            TextField(
+            CustomTextField(
               controller: _nameController,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
-              ),
-              cursorColor: secondaryAccentColor,
-              decoration: InputDecoration(
-                filled: true,
-                border: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.sp),
-                  borderSide: BorderSide.none,
-                ),
-                labelText: 'Имя *',
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: secondaryFontColor,
-                ),
-                fillColor: textInputBackbroundColor,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8.sp,
-                  horizontal: 12.sp,
-                ),
-              ),
+              text: S.of(context).guest_name,
             ),
             SizedBox(height: 12.sp),
-            TextField(
+            CustomTextField(
               controller: _surnameController,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
-              ),
-              cursorColor: secondaryAccentColor,
-              decoration: InputDecoration(
-                filled: true,
-                border: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.sp),
-                  borderSide: BorderSide.none,
-                ),
-                labelText: 'Фамилия *',
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: secondaryFontColor,
-                ),
-                fillColor: textInputBackbroundColor,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8.sp,
-                  horizontal: 12.sp,
-                ),
-              ),
+              text: S.of(context).guest_surname,
             ),
             SizedBox(height: 12.sp),
-            TextField(
+            CustomTextField(
               controller: _birthdayDateController,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
-              ),
-              cursorColor: secondaryAccentColor,
-              decoration: InputDecoration(
-                filled: true,
-                border: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.sp),
-                  borderSide: BorderSide.none,
-                ),
-                labelText: 'Дата рождения *',
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: secondaryFontColor,
-                ),
-                fillColor: textInputBackbroundColor,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8.sp,
-                  horizontal: 12.sp,
-                ),
-              ),
+              text: S.of(context).guest_birthday,
             ),
             SizedBox(height: 12.sp),
-            TextField(
+            CustomTextField(
               controller: _phoneNumberController,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
-              ),
-              cursorColor: secondaryAccentColor,
-              decoration: InputDecoration(
-                filled: true,
-                border: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.sp),
-                  borderSide: BorderSide.none,
-                ),
-                labelText: 'Телефон',
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: secondaryFontColor,
-                ),
-                fillColor: textInputBackbroundColor,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8.sp,
-                  horizontal: 12.sp,
-                ),
-              ),
+              text: S.of(context).guest_phone,
             ),
             SizedBox(height: 12.sp),
-            TextField(
+            CustomTextField(
               controller: _professionController,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w700,
-              ),
-              cursorColor: secondaryAccentColor,
-              decoration: InputDecoration(
-                filled: true,
-                border: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.sp),
-                  borderSide: BorderSide.none,
-                ),
-                labelText: 'Профессия *',
-                labelStyle: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: secondaryFontColor,
-                ),
-                fillColor: textInputBackbroundColor,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 8.sp,
-                  horizontal: 12.sp,
-                ),
-              ),
+              text: S.of(context).guest_profession,
             ),
             SizedBox(height: 50.sp),
             RoundedButton(
@@ -201,7 +98,7 @@ class _AddGiftPanelState extends State<AddGuestPanel> {
                 widget.onAddPerson(injectGuestModel());
                 Navigator.pop(context);
               },
-              text: 'Записаться',
+              text: S.of(context).add_guest,
               buttonColor: secondaryAccentColor,
             ),
             SizedBox(height: 135.sp),

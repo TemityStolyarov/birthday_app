@@ -18,6 +18,15 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
+const dishNames = [
+  'Канапе',
+  'Сырная тарелка',
+  'Шашлык на мангале',
+  'Морепродукты',
+  'Свежие фрукты',
+  'Авторские лимонады',
+];
+
 class _MainPageState extends State<MainPage> {
   bool _wrappedMenu = false;
   bool _wrappedEntertainments = true;
@@ -33,15 +42,6 @@ class _MainPageState extends State<MainPage> {
       _wrappedEntertainments = !_wrappedEntertainments;
     });
   }
-
-  final dishNames = [
-    'Канапе',
-    'Сырная тарелка',
-    'Шашлык на мангале',
-    'Морепродукты',
-    'Свежие фрукты',
-    'Авторские лимонады',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _MainPageState extends State<MainPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Приглашаю своих дорогих друзей отметить мой день рождения в замечательном месте с множеством развлечений, вкусных блюд и хорошим настроением!',
+                          S.of(context).welcome_text,
                           style: TextStyle(fontSize: 14.sp),
                         ),
                         SizedBox(height: 15.sp),
@@ -84,14 +84,14 @@ class _MainPageState extends State<MainPage> {
                                 Navigator.of(context)
                                     .pushNamed(NameRoutes.guests);
                               },
-                              text: 'Список гостей',
+                              text: S.of(context).guestlist,
                             ),
                             RoundedButton(
                               onPressed: () {
                                 Navigator.of(context)
                                     .pushNamed(NameRoutes.wishlist);
                               },
-                              text: 'Вишлист',
+                              text: S.of(context).wishlist,
                             ),
                           ],
                         ),
@@ -117,7 +117,9 @@ class _MainPageState extends State<MainPage> {
                                 MaterialStatePropertyAll(Colors.transparent),
                           ),
                           child: Text(
-                            _wrappedMenu ? 'Развернуть ▼' : 'Свернуть ▲',
+                            _wrappedMenu
+                                ? S.of(context).unwrap
+                                : S.of(context).wrap,
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: Colors.black,
@@ -154,8 +156,8 @@ class _MainPageState extends State<MainPage> {
                           ),
                           child: Text(
                             _wrappedEntertainments
-                                ? 'Развернуть ▼'
-                                : 'Свернуть ▲',
+                                ? S.of(context).unwrap
+                                : S.of(context).wrap,
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: Colors.black,
@@ -187,7 +189,7 @@ class _MainPageState extends State<MainPage> {
                             Uri.parse('https://yandex.ru/maps/-/CPgiUbr'),
                           ),
                           child: Text(
-                            'Перейти на сайт места',
+                            S.of(context).go_to_site,
                             style: TextStyle(
                               fontSize: 14.sp,
                               decoration: TextDecoration.underline,
@@ -211,29 +213,19 @@ class _MainPageState extends State<MainPage> {
 class _Header extends StatelessWidget {
   final String text;
   final double? fontSize;
-  final double? topPadding;
-  final double? bottomPadding;
 
   const _Header({
     required this.text,
     this.fontSize,
-    this.topPadding,
-    this.bottomPadding,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: topPadding ?? 0,
-        bottom: bottomPadding ?? 0,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: fontSize,
-          fontFamily: 'YesevaOne',
-        ),
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: fontSize,
+        fontFamily: 'YesevaOne',
       ),
     );
   }

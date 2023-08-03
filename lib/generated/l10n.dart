@@ -50,6 +50,18 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  // skipped getter for the '' key
+
+  /// `Приглашаю своих дорогих друзей отметить мой день рождения в замечательном месте с множеством развлечений, вкусных блюд и хорошим настроением!`
+  String get welcome_text {
+    return Intl.message(
+      'Приглашаю своих дорогих друзей отметить мой день рождения в замечательном месте с множеством развлечений, вкусных блюд и хорошим настроением!',
+      name: 'welcome_text',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Меню`
   String get header_menu {
     return Intl.message(
@@ -80,6 +92,46 @@ class S {
     );
   }
 
+  /// `Свернуть ▲`
+  String get wrap {
+    return Intl.message(
+      'Свернуть ▲',
+      name: 'wrap',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Развернуть ▼`
+  String get unwrap {
+    return Intl.message(
+      'Развернуть ▼',
+      name: 'unwrap',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Перейти на сайт места`
+  String get go_to_site {
+    return Intl.message(
+      'Перейти на сайт места',
+      name: 'go_to_site',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guests Page`
+  String get _ {
+    return Intl.message(
+      'Guests Page',
+      name: '_',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{guests, plural, zero{гостей} one{гость} few{гостя} other{гостей}}`
   String guests(num guests) {
     return Intl.plural(
@@ -91,6 +143,206 @@ class S {
       name: 'guests',
       desc: '',
       args: [guests],
+    );
+  }
+
+  /// `Список гостей`
+  String get guestlist {
+    return Intl.message(
+      'Список гостей',
+      name: 'guestlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Имя *`
+  String get guest_name {
+    return Intl.message(
+      'Имя *',
+      name: 'guest_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Фамилия *`
+  String get guest_surname {
+    return Intl.message(
+      'Фамилия *',
+      name: 'guest_surname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Дата рождения *`
+  String get guest_birthday {
+    return Intl.message(
+      'Дата рождения *',
+      name: 'guest_birthday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Телефон`
+  String get guest_phone {
+    return Intl.message(
+      'Телефон',
+      name: 'guest_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Профессия *`
+  String get guest_profession {
+    return Intl.message(
+      'Профессия *',
+      name: 'guest_profession',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Записаться`
+  String get add_guest {
+    return Intl.message(
+      'Записаться',
+      name: 'add_guest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По имени      ▲`
+  String get sort_by_name_asc {
+    return Intl.message(
+      'По имени      ▲',
+      name: 'sort_by_name_asc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По фамилии      ▲`
+  String get sort_by_surname_asc {
+    return Intl.message(
+      'По фамилии      ▲',
+      name: 'sort_by_surname_asc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По дате регистрации      ▲`
+  String get sort_by_registration_asc {
+    return Intl.message(
+      'По дате регистрации      ▲',
+      name: 'sort_by_registration_asc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По возрасту      ▲`
+  String get sort_by_birthday_asc {
+    return Intl.message(
+      'По возрасту      ▲',
+      name: 'sort_by_birthday_asc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По имени      ▼`
+  String get sort_by_name_des {
+    return Intl.message(
+      'По имени      ▼',
+      name: 'sort_by_name_des',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По фамилии      ▼`
+  String get sort_by_surname_des {
+    return Intl.message(
+      'По фамилии      ▼',
+      name: 'sort_by_surname_des',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По дате регистрации      ▼`
+  String get sort_by_registration_des {
+    return Intl.message(
+      'По дате регистрации      ▼',
+      name: 'sort_by_registration_des',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По возрасту      ▼`
+  String get sort_by_birthday_des {
+    return Intl.message(
+      'По возрасту      ▼',
+      name: 'sort_by_birthday_des',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wishlist Page`
+  String get __ {
+    return Intl.message(
+      'Wishlist Page',
+      name: '__',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вишлист`
+  String get wishlist {
+    return Intl.message(
+      'Вишлист',
+      name: 'wishlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Название`
+  String get gift_name {
+    return Intl.message(
+      'Название',
+      name: 'gift_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ссылка`
+  String get gift_link {
+    return Intl.message(
+      'Ссылка',
+      name: 'gift_link',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Добавить подарок`
+  String get add_gift {
+    return Intl.message(
+      'Добавить подарок',
+      name: 'add_gift',
+      desc: '',
+      args: [],
     );
   }
 }

@@ -71,7 +71,7 @@ class _GuestPageState extends State<GuestPage> {
             ),
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(48.sp),
-              child: const CustomAppBar(text: 'Список гостей'),
+              child: CustomAppBar(text: S.of(context).guestlist),
             ),
             resizeToAvoidBottomInset: false,
             backgroundColor: backgroundColor,
@@ -95,7 +95,7 @@ class _GuestPageState extends State<GuestPage> {
                             _showTodoPanel(context, 'Sorting');
                           },
                           child: Text(
-                            'По имени      ▼',
+                            S.of(context).sort_by_name_des,
                             style: TextStyle(
                               fontSize: 14.sp,
                               decoration: TextDecoration.underline,
@@ -155,6 +155,7 @@ class _PersonsListState extends State<_PersonsList> {
   }
 }
 
+// TODO Remove Todo Panel
 void _showTodoPanel(BuildContext context, String text) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(

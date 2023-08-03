@@ -5,6 +5,7 @@ import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
 import 'package:mobyte_birthday/feachures/wishlist/widgets/add_gift_panel.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_app_bar.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_floating_button.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WishlistPage extends StatefulWidget {
@@ -61,7 +62,7 @@ class _WishlistPageState extends State<WishlistPage> {
             ),
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(48.sp),
-              child: const CustomAppBar(text: 'Вишлист'),
+              child: CustomAppBar(text: S.of(context).wishlist),
             ),
             backgroundColor: backgroundColor,
             body: SingleChildScrollView(
@@ -167,7 +168,7 @@ class _Gift extends StatelessWidget {
               GestureDetector(
                 onTap: openLink,
                 child: Text(
-                  'Ссылка',
+                  S.of(context).gift_link,
                   style: TextStyle(
                     fontSize: 14.sp,
                     decoration: TextDecoration.underline,
