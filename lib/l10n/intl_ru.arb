@@ -1,0 +1,6 @@
+{
+    "header_menu": "Меню",
+    "header_entertaiments": "Развлечения",
+    "header_place": "Место",
+    "guests": "{guests, plural, zero{гостей} one{гость} few{гостя} other{гостей}}"
+}

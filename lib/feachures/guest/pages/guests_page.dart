@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
+import 'package:mobyte_birthday/feachures/guest/widgets/add_guest_panel.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_app_bar.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_floating_button.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 
 class GuestPage extends StatefulWidget {
   const GuestPage({Key? key}) : super(key: key);
@@ -14,18 +16,43 @@ class GuestPage extends StatefulWidget {
 
 List<Map<String, dynamic>> persons = [
   {
-    'name': 'Иван Иванов',
-    'age': '19 лет',
+    'name': 'Иван',
+    'surname': 'Иванов',
+    'birthday': '19 лет',
     'profession': 'Студент',
   },
   {
-    'name': 'Марья Морская',
-    'age': '23 года',
+    'name': 'Марья',
+    'surname': 'Морская',
+    'birthday': '23 года',
     'profession': 'Дизайнер',
   },
 ];
 
 class _GuestPageState extends State<GuestPage> {
+  void onAddPerson(Map<String, dynamic> gift) {
+    setState(() {
+      persons.add(gift);
+    });
+  }
+
+  void _showSlidingPanel(BuildContext context) {
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(12.sp),
+        ),
+      ),
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return AddGuestPanel(
+          onAddPerson: onAddPerson,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -38,7 +65,7 @@ class _GuestPageState extends State<GuestPage> {
               child: CustomFloatingButton(
                 size: 84.spMin,
                 onTap: () {
-                  _showSlidingPanel(context, 'AddPersonPanel');
+                  _showSlidingPanel(context);
                 },
               ),
             ),
@@ -58,14 +85,14 @@ class _GuestPageState extends State<GuestPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${persons.length} гостя',
+                          '${persons.length} ${S.of(context).guests(persons.length)}',
                           style: TextStyle(
                             fontSize: 14.sp,
                           ),
                         ),
                         GestureDetector(
                           onTap: () {
-                            _showSlidingPanel(context, 'Sorting');
+                            _showTodoPanel(context, 'Sorting');
                           },
                           child: Text(
                             'По имени      ▼',
@@ -112,7 +139,8 @@ class _PersonsListState extends State<_PersonsList> {
       itemBuilder: (BuildContext context, int index) {
         return _Person(
           name: widget.persons[index]['name'],
-          age: widget.persons[index]['age'],
+          surname: widget.persons[index]['surname'],
+          birthdayDate: widget.persons[index]['birthday'],
           profession: widget.persons[index]['profession'],
           onTap: () {/*TODO*/},
         );
@@ -127,7 +155,7 @@ class _PersonsListState extends State<_PersonsList> {
   }
 }
 
-void _showSlidingPanel(BuildContext context, String text) {
+void _showTodoPanel(BuildContext context, String text) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
@@ -143,17 +171,14 @@ void _showSlidingPanel(BuildContext context, String text) {
           child: Text('TODO: $text'),
         ),
       );
-      //TODO
-      // AddPersonPanel(
-      //   onAddPerson: onAddPerson,
-      // );
     },
   );
 }
 
 class _Person extends StatelessWidget {
   final String name;
-  final String age;
+  final String surname;
+  final String birthdayDate;
   final String profession;
   final String? phone;
   final String? image;
@@ -161,12 +186,13 @@ class _Person extends StatelessWidget {
 
   const _Person({
     Key? key,
-    required this.onTap,
     required this.name,
-    required this.age,
+    required this.surname,
+    required this.birthdayDate,
     required this.profession,
-    this.image,
     this.phone,
+    this.image,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -176,7 +202,7 @@ class _Person extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            _showSlidingPanel(context, 'Uploading photo');
+            _showTodoPanel(context, 'Uploading photo');
           },
           child: SizedBox(
             width: 64.sp,
@@ -194,14 +220,14 @@ class _Person extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              name,
+              '$name $surname',
               style: TextStyle(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
-              age,
+              birthdayDate,
               style: TextStyle(
                 fontSize: 12.sp,
                 color: secondaryFontColor,

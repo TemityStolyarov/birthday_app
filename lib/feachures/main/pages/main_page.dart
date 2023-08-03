@@ -8,6 +8,7 @@ import 'package:mobyte_birthday/feachures/main/widgets/menu_grid.dart';
 import 'package:mobyte_birthday/feachures/main/widgets/yandex_map.dart';
 import 'package:mobyte_birthday/feachures/widgets/custon_rounded_button.dart';
 import 'package:mobyte_birthday/core/utils/routes/name_routes.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainPage extends StatefulWidget {
@@ -97,7 +98,7 @@ class _MainPageState extends State<MainPage> {
                         SizedBox(height: 30.sp),
                         _Header(
                           fontSize: 24.sp,
-                          text: 'Меню',
+                          text: S.of(context).header_menu,
                         ),
                         Padding(
                           padding: EdgeInsets.only(
@@ -130,7 +131,7 @@ class _MainPageState extends State<MainPage> {
                         SizedBox(height: 30.sp),
                         _Header(
                           fontSize: 24.sp,
-                          text: 'Развлечения',
+                          text: S.of(context).header_entertaiments,
                         ),
                         SizedBox(height: 16.sp),
                         EntertaimentsList(
@@ -168,7 +169,7 @@ class _MainPageState extends State<MainPage> {
                         SizedBox(height: 30.sp),
                         _Header(
                           fontSize: 24.sp,
-                          text: 'Место',
+                          text: S.of(context).header_place,
                         ),
                         SizedBox(height: 16.sp),
                         const YandexMapKit(),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mobyte_birthday/core/constants.dart';
 import 'package:mobyte_birthday/core/utils/routes/app_routes.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 void main() {
@@ -20,6 +22,13 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Jost',
       ),
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
