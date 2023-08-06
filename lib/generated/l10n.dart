@@ -240,6 +240,26 @@ class S {
     );
   }
 
+  /// `Вы уверены, что хотите удалить гостя\n{name} {surname} из списка?`
+  String confirm_delete(Object name, Object surname) {
+    return Intl.message(
+      'Вы уверены, что хотите удалить гостя\n$name $surname из списка?',
+      name: 'confirm_delete',
+      desc: '',
+      args: [name, surname],
+    );
+  }
+
+  /// `Удалить`
+  String get delete_guest {
+    return Intl.message(
+      'Удалить',
+      name: 'delete_guest',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `По имени      ▲`
   String get sort_by_name_asc {
     return Intl.message(

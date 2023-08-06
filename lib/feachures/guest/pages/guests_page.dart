@@ -9,6 +9,7 @@ import 'package:mobyte_birthday/feachures/guest/widgets/edit_guest_panel.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_app_bar.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_floating_button.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
+import 'package:mobyte_birthday/feachures/widgets/custon_rounded_button.dart';
 import 'package:mobyte_birthday/generated/l10n.dart';
 
 class GuestPage extends StatefulWidget {
@@ -218,7 +219,7 @@ class _GuestsListState extends State<_GuestsList> {
   }
 }
 
-// TODO Remove method Todo Panel
+// TODO Remove method Todo Panel before publication
 void _showTodoPanel(BuildContext context, String text) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
@@ -239,16 +240,76 @@ void _showTodoPanel(BuildContext context, String text) {
   );
 }
 
+void _showConfirmPanel(BuildContext context, GuestModel guest, int index) {
+  showModalBottomSheet(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(12.sp),
+      ),
+    ),
+    context: context,
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      return SizedBox(
+        height: 200.sp,
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(16.sp),
+            child: Column(
+              children: [
+                Container(
+                  height: 4.sp,
+                  width: 35.sp,
+                  decoration: BoxDecoration(
+                    color: tertiaryColor,
+                    borderRadius: BorderRadius.circular(40.sp),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 40.sp,
+                    vertical: 16.sp,
+                  ),
+                  child: Text(
+                    S.of(context).confirm_delete(guest.name, guest.surname),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.sp),
+                RoundedButton(
+                  fontSize: 16.sp,
+                  width: 181.sp,
+                  height: 50.sp,
+                  onPressed: () {
+                    Hive.box('guests').deleteAt(index);
+                    Navigator.of(context).pop();
+                  },
+                  text: S.of(context).delete_guest,
+                  buttonColor: secondaryAccentColor,
+                ),
+                //
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
 class _GuestTile extends StatelessWidget {
   final GuestModel guestModel;
-  // final VoidCallback onTapUpdate;
+  // final VoidCallback onTapUpdate; may be required in implementing photo update function
   final Box guestsBox;
   final int index;
 
   const _GuestTile({
     Key? key,
     required this.guestModel,
-    // required this.onTapUpdate,
+    // required this.onTapUpdate, may be required in implementing photo update function
     required this.guestsBox,
     required this.index,
   }) : super(key: key);
@@ -306,12 +367,17 @@ class _GuestTile extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '${guestModel.name} ${guestModel.surname}',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-              ),
+            Wrap(
+              children: [
+                SizedBox(
+                  width: 200.sp,
+                  child: Text(
+                    '${guestModel.name} ${guestModel.surname}',
+                    softWrap: true,
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
+              ],
             ),
             Text(
               calculateAge(guestModel.birthdayDate, context),
@@ -338,8 +404,8 @@ class _GuestTile extends StatelessWidget {
             padding: EdgeInsets.all(0.sp),
             splashRadius: 20.sp,
             icon: const Icon(Icons.delete_outline_rounded),
-            // TODO Deleting alert
-            onPressed: () => guestsBox.deleteAt(index),
+            onPressed: () =>
+                _showConfirmPanel(context, guestsBox.getAt(index), index),
           ),
         ),
       ],

@@ -18,6 +18,8 @@
     "guest_profession": "Профессия *",
     "add_guest": "Записаться",
     "edit_guest": "Отредактировать",
+    "confirm_delete": "Вы уверены, что хотите удалить гостя\n{name} {surname} из списка?",
+    "delete_guest": "Удалить",
     "sort_by_name_asc": "По имени      ▲",
     "sort_by_surname_asc": "По фамилии      ▲",
     "sort_by_registration_asc": "По дате регистрации      ▲",

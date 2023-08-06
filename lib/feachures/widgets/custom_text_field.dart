@@ -20,13 +20,14 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      // initialValue: predictedText,
+      maxLength: 30,
       style: TextStyle(
         fontSize: 16.sp,
         fontWeight: FontWeight.w700,
       ),
       cursorColor: secondaryAccentColor,
       decoration: InputDecoration(
+        counterText: '',
         filled: true,
         border: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(4.sp),

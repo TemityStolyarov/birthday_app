@@ -23,7 +23,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(age) =>
       "${Intl.plural(age, zero: 'лет', one: 'год', few: 'года', other: 'лет')}";
 
-  static String m1(guests) =>
+  static String m1(name, surname) =>
+      "Вы уверены, что хотите удалить гостя\n${name} ${surname} из списка?";
+
+  static String m2(guests) =>
       "${Intl.plural(guests, zero: 'гостей', one: 'гость', few: 'гостя', other: 'гостей')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -33,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_gift": MessageLookupByLibrary.simpleMessage("Добавить подарок"),
         "add_guest": MessageLookupByLibrary.simpleMessage("Записаться"),
         "age": m0,
+        "confirm_delete": m1,
+        "delete_guest": MessageLookupByLibrary.simpleMessage("Удалить"),
         "edit_guest": MessageLookupByLibrary.simpleMessage("Отредактировать"),
         "gift_link": MessageLookupByLibrary.simpleMessage("Ссылка"),
         "gift_name": MessageLookupByLibrary.simpleMessage("Название"),
@@ -45,7 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest_profession": MessageLookupByLibrary.simpleMessage("Профессия *"),
         "guest_surname": MessageLookupByLibrary.simpleMessage("Фамилия *"),
         "guestlist": MessageLookupByLibrary.simpleMessage("Список гостей"),
-        "guests": m1,
+        "guests": m2,
         "header_entertaiments":
             MessageLookupByLibrary.simpleMessage("Развлечения"),
         "header_menu": MessageLookupByLibrary.simpleMessage("Меню"),
