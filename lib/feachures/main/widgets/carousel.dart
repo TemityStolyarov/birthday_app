@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobyte_birthday/core/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobyte_birthday/feachures/main/widgets/bloc/carousel_bloc.dart';
 
-class ImageCarousel extends StatefulWidget {
+// int _index = 0;
+
+class ImageCarousel extends StatelessWidget {
   const ImageCarousel({super.key});
-
-  @override
-  State<ImageCarousel> createState() => _ImageCarouselState();
-}
-
-class _ImageCarouselState extends State<ImageCarousel> {
-  int _index = 0;
-  List<String> data = [
-    '25 августа\n2023',
-    'Веселое\nафтерпати',
-    'Три дня\nвеселья',
-    'Ночные\nразвлечения'
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,22 +50,23 @@ class _ImageCarouselState extends State<ImageCarousel> {
             );
           },
           onPageChanged: (index) {
-            setState(() {
-              _index = index;
-            });
+            context.read<CarouselBloc>().add(CarouselSwapEvent(index));
           },
         ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: EdgeInsets.only(
-              bottom: 11.sp,
-            ),
-            child: _CarouselIndicator(
-              length: data.length,
-              selected: _index,
-            ),
-          ),
+              padding: EdgeInsets.only(
+                bottom: 11.sp,
+              ),
+              child: BlocBuilder<CarouselBloc, CarouselState>(
+                builder: (context, state) {
+                  return _CarouselIndicator(
+                    length: data.length,
+                    selected: state.index,
+                  );
+                },
+              )),
         ),
       ],
     );
@@ -85,7 +78,6 @@ class _CarouselIndicator extends StatelessWidget {
   final int selected;
 
   const _CarouselIndicator({
-    super.key,
     required this.length,
     required this.selected,
   });

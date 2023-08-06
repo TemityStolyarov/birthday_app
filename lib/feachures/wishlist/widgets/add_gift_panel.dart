@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobyte_birthday/core/constants.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_text_field.dart';
 import 'package:mobyte_birthday/feachures/widgets/custon_rounded_button.dart';
+import 'package:mobyte_birthday/feachures/wishlist/models/gift_model.dart';
 import 'package:mobyte_birthday/generated/l10n.dart';
 
 class AddGiftPanel extends StatefulWidget {
-  final Function(Map<String, dynamic>) onAddGift;
-
   const AddGiftPanel({
     Key? key,
-    required this.onAddGift,
   }) : super(key: key);
 
   @override
@@ -18,22 +17,21 @@ class AddGiftPanel extends StatefulWidget {
 }
 
 class _AddGiftPanelState extends State<AddGiftPanel> {
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _subtitleController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _linkController = TextEditingController();
 
   @override
   void dispose() {
-    _titleController.dispose();
-    _subtitleController.dispose();
+    _nameController.dispose();
+    _linkController.dispose();
     super.dispose();
   }
 
-  Map<String, dynamic> injectGiftModel() {
-    return {
-      'title': _titleController.text,
-      'subtitle': _subtitleController.text,
-      'reserved': false,
-    };
+  void _addGift(GiftModel newGift) {
+    // if (_formKey.currentState!.validate()) {
+    Hive.box('gifts').add(newGift);
+    Navigator.pop(context);
+    // }
   }
 
   @override
@@ -54,13 +52,13 @@ class _AddGiftPanelState extends State<AddGiftPanel> {
             ),
             SizedBox(height: 20.sp),
             CustomTextField(
-              controller: _titleController,
+              controller: _nameController,
               text: S.of(context).gift_name,
               required: true,
             ),
             SizedBox(height: 12.sp),
             CustomTextField(
-              controller: _subtitleController,
+              controller: _linkController,
               text: S.of(context).gift_link,
               required: true,
             ),
@@ -70,8 +68,12 @@ class _AddGiftPanelState extends State<AddGiftPanel> {
               width: 181.sp,
               height: 50.sp,
               onPressed: () {
-                widget.onAddGift(injectGiftModel());
-                Navigator.pop(context);
+                final newGift = GiftModel(
+                  name: _nameController.text,
+                  link: _linkController.text,
+                  reserved: false,
+                );
+                _addGift(newGift);
               },
               text: S.of(context).add_gift,
               buttonColor: secondaryAccentColor,

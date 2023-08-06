@@ -1,82 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobyte_birthday/core/constants.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
+import 'package:mobyte_birthday/feachures/wishlist/bloc/wishlist_page_bloc.dart';
+import 'package:mobyte_birthday/feachures/wishlist/models/gift_model.dart';
 import 'package:mobyte_birthday/feachures/wishlist/widgets/add_gift_panel.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_app_bar.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_floating_button.dart';
 import 'package:mobyte_birthday/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class WishlistPage extends StatefulWidget {
+// void onRecervedToggle(int index) {
+//     setState(() {
+//       gifts[index]['reserved'] = !gifts[index]['reserved'];
+//     });
+//   }
+
+//   void onAddGift(Map<String, dynamic> gift) {
+//     setState(() {
+//       gifts.add(gift);
+//     });
+//   }
+
+class WishlistPage extends StatelessWidget {
   const WishlistPage({Key? key}) : super(key: key);
 
-  @override
-  State<WishlistPage> createState() => _WishlistPageState();
-}
-
-//TODO вынести в модель
-List<Map<String, dynamic>> gifts = [
-  {
-    'title': 'Playstation 5',
-    'subtitle':
-        'https://www.google.com/search?q=playstation+5&sxsrf=AB5stBiFPJBUztpMwkGvTVG6kq5lMceUHQ%3A1689963425657&source=hp&ei=ocu6ZOO-JcCXhbIPudKMUA&iflsig=AD69kcEAAAAAZLrZsZ_OKKPYaoLdqpzQir8m6f6goAMZ&ved=0ahUKEwijk6uttKCAAxXAS0EAHTkpAwoQ4dUDCAk&uact=5&oq=playstation+5&gs_lp=Egdnd3Mtd2l6Ig1wbGF5c3RhdGlvbiA1SHJQD1gPcAB4AJABAJgBAKABAKoBALgBA8gBAPgBAQ&sclient=gws-wiz',
-    'reserved': false,
-  },
-  {
-    'title': 'GTA V',
-    'subtitle':
-        'https://www.google.com/search?q=gta+5&sxsrf=AB5stBitMo3vDWCxtMDEoHcC78scyUopjg%3A1689963429553&ei=pcu6ZNKtIa2whbIPz86QqAE&ved=0ahUKEwiSlJuvtKCAAxUtWEEAHU8nBBUQ4dUDCA8&uact=5&oq=gta+5&gs_lp=Egxnd3Mtd2l6LXNlcnAiBWd0YSA1MgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgcQABiKBRhDMgcQLhiKBRhDMgcQLhiKBRhDMgUQABiABDIFEAAYgAQyFhAuGIoFGEMYlwUY3AQY3gQY4ATYAQFIrgdQAFivBXAAeAGQAQCYAY8CoAGWBqoBBTAuMi4yuAEDyAEA-AEBwgINEC4YigUYxwEY0QMYQ8ICCxAuGIAEGMcBGNEDwgIcEC4YigUYxwEY0QMYQxiXBRjcBBjeBBjgBNgBAeIDBBgAIEGIBgG6BgYIARABGBQ&sclient=gws-wiz-serp',
-    'reserved': true,
-  },
-];
-
-class _WishlistPageState extends State<WishlistPage> {
-  void onRecervedToggle(int index) {
-    setState(() {
-      gifts[index]['reserved'] = !gifts[index]['reserved'];
-    });
-  }
-
-  void onAddGift(Map<String, dynamic> gift) {
-    setState(() {
-      gifts.add(gift);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: (context, child) {
-        return CustomSafeArea(
-          scaffold: Scaffold(
-            floatingActionButton: Padding(
-              padding: EdgeInsets.only(right: 16.sp),
-              child: CustomFloatingButton(
-                size: 84.spMin,
-                onTap: () {
-                  _showSlidingPanel(context);
-                },
-              ),
-            ),
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(48.sp),
-              child: CustomAppBar(text: S.of(context).wishlist),
-            ),
-            backgroundColor: backgroundColor,
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.all(16.sp),
-                child: _GiftsList(
-                  gifts: gifts,
-                  onReservedToggle: onRecervedToggle,
-                ),
-              ),
-            ),
-          ),
-        );
-      },
+  // Mocked default values
+  void _initDefaultGiftValues() {
+    Hive.box('gifts').put(
+      0,
+      GiftModel(
+        name: 'Playstation 5',
+        link: link1,
+        reserved: false,
+      ),
+    );
+    Hive.box('gifts').put(
+      1,
+      GiftModel(
+        name: 'GTA V',
+        link: link2,
+        reserved: true,
+      ),
     );
   }
 
@@ -90,64 +57,126 @@ class _WishlistPageState extends State<WishlistPage> {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return AddGiftPanel(
-          onAddGift: onAddGift,
-        );
+        return const AddGiftPanel();
       },
     );
   }
-}
 
-class _GiftsList extends StatefulWidget {
-  final List<Map<String, dynamic>> gifts;
-  final Function(int) onReservedToggle;
-
-  const _GiftsList({
-    Key? key,
-    required this.gifts,
-    required this.onReservedToggle,
-  }) : super(key: key);
-
-  @override
-  State<_GiftsList> createState() => _GiftsListState();
-}
-
-class _GiftsListState extends State<_GiftsList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (BuildContext context, int index) {
-        return _Gift(
-          title: widget.gifts[index]['title'],
-          subtitle: widget.gifts[index]['subtitle'],
-          reserved: widget.gifts[index]['reserved'],
-          onTap: () => widget.onReservedToggle(index),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (context, child) {
+        return FutureBuilder(
+          future: Hive.openBox('gifts'),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
+              } else {
+                _initDefaultGiftValues();
+                return BlocProvider<WishlistPageBloc>(
+                  create: (context) => WishlistPageBloc(),
+                  child: CustomSafeArea(
+                    scaffold: Scaffold(
+                      floatingActionButton: Padding(
+                        padding: EdgeInsets.only(right: 16.sp),
+                        child: CustomFloatingButton(
+                          size: 84.spMin,
+                          onTap: () {
+                            _showSlidingPanel(context);
+                          },
+                        ),
+                      ),
+                      appBar: PreferredSize(
+                        preferredSize: Size.fromHeight(48.sp),
+                        child: CustomAppBar(text: S.of(context).wishlist),
+                      ),
+                      backgroundColor: backgroundColor,
+                      body: SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsets.all(16.sp),
+                          child: const _GiftsList(),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }
+            } else {
+              return const CustomSafeArea(
+                scaffold: Scaffold(
+                  body: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          color: secondaryAccentColor,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+          },
         );
       },
-      itemCount: widget.gifts.length,
-      separatorBuilder: (BuildContext context, int index) {
-        return SizedBox(height: 16.sp);
-      },
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      scrollDirection: Axis.vertical,
     );
   }
 }
 
-class _Gift extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final bool reserved;
-  final VoidCallback onTap;
-
-  const _Gift({
+class _GiftsList extends StatelessWidget {
+  const _GiftsList({
     Key? key,
-    required this.title,
-    required this.subtitle,
-    required this.reserved,
-    required this.onTap,
   }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: Hive.box('gifts').listenable(),
+      builder: (BuildContext context, giftsBox, Widget? child) {
+        return ListView.separated(
+          itemBuilder: (BuildContext context, int index) {
+            final giftModel = Hive.box('gifts').getAt(index) as GiftModel;
+            return InkWell(
+              overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+              onDoubleTap: () => Hive.box('gifts').deleteAt(index),
+              child: _GiftTile(
+                giftModel: giftModel,
+                giftsBox: giftsBox,
+                index: index,
+              ),
+            );
+          },
+          itemCount: giftsBox.length,
+          separatorBuilder: (BuildContext context, int index) {
+            return SizedBox(height: 16.sp);
+          },
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+        );
+      },
+    );
+  }
+}
+
+class _GiftTile extends StatelessWidget {
+  final GiftModel giftModel;
+  final Box giftsBox;
+  final int index;
+
+  const _GiftTile({
+    Key? key,
+    required this.giftModel,
+    required this.giftsBox,
+    required this.index,
+  }) : super(key: key);
+
+  void openLink() {
+    launchUrl(Uri.parse(giftModel.link));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +188,7 @@ class _Gift extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                title,
+                giftModel.name,
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
@@ -178,25 +207,32 @@ class _Gift extends StatelessWidget {
             ],
           ),
         ),
-        InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(20.r),
-          child: Ink(
-            width: 20.sp,
-            height: 20.sp,
-            decoration: BoxDecoration(
-              color: reserved
-                  ? reservationPointSelectedColor
-                  : reservationPointUnselectedColor,
-              shape: BoxShape.circle,
-            ),
-          ),
-        ),
+        BlocBuilder<WishlistPageBloc, WishlistPageState>(
+          builder: (context, state) {
+            return InkWell(
+              onTap: () {
+                context.read<WishlistPageBloc>().add(
+                      WishlistPageChangeEvent(
+                        index: index,
+                        giftModel: giftModel,
+                      ),
+                    );
+              },
+              borderRadius: BorderRadius.circular(20.r),
+              child: Ink(
+                width: 20.sp,
+                height: 20.sp,
+                decoration: BoxDecoration(
+                  color: giftModel.reserved
+                      ? reservationPointSelectedColor
+                      : reservationPointUnselectedColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            );
+          },
+        )
       ],
     );
-  }
-
-  void openLink() {
-    launchUrl(Uri.parse(subtitle));
   }
 }

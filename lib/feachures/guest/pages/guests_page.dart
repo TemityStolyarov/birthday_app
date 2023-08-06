@@ -12,16 +12,11 @@ import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
 import 'package:mobyte_birthday/feachures/widgets/custon_rounded_button.dart';
 import 'package:mobyte_birthday/generated/l10n.dart';
 
-class GuestPage extends StatefulWidget {
+class GuestPage extends StatelessWidget {
   const GuestPage({Key? key}) : super(key: key);
 
-  @override
-  State<GuestPage> createState() => _GuestPageState();
-}
-
-class _GuestPageState extends State<GuestPage> {
-  // Mocked default falues
-  void initDefaultGuestValues() {
+  // Mocked default values
+  void _initDefaultGuestValues() {
     Hive.box('guests').put(
       0,
       GuestModel(
@@ -70,7 +65,7 @@ class _GuestPageState extends State<GuestPage> {
               if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
               } else {
-                initDefaultGuestValues();
+                _initDefaultGuestValues();
                 return CustomSafeArea(
                   scaffold: Scaffold(
                     floatingActionButton: Padding(
@@ -156,24 +151,13 @@ class _GuestPageState extends State<GuestPage> {
       },
     );
   }
-
-  @override
-  void dispose() {
-    Hive.close();
-    super.dispose();
-  }
 }
 
-class _GuestsList extends StatefulWidget {
+class _GuestsList extends StatelessWidget {
   const _GuestsList({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<_GuestsList> createState() => _GuestsListState();
-}
-
-class _GuestsListState extends State<_GuestsList> {
   void _showEditingPanel(BuildContext context, int index) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
@@ -302,14 +286,14 @@ void _showConfirmPanel(BuildContext context, GuestModel guest, int index) {
 
 class _GuestTile extends StatelessWidget {
   final GuestModel guestModel;
-  // final VoidCallback onTapUpdate; may be required in implementing photo update function
+  // final VoidCallback onTapUpdate; might be required in implementing photo update function
   final Box guestsBox;
   final int index;
 
   const _GuestTile({
     Key? key,
     required this.guestModel,
-    // required this.onTapUpdate, may be required in implementing photo update function
+    // required this.onTapUpdate, might be required in implementing photo update function
     required this.guestsBox,
     required this.index,
   }) : super(key: key);

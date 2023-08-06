@@ -5,15 +5,6 @@ import 'package:mobyte_birthday/feachures/main/models/dish_name_model.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_app_bar.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
 
-const receipts = [
-  ['Хлеб', 'Ветчина', 'Салат', 'Яйцо'],
-  ['Пармезан', 'Моцарелла', 'Грецкий орех', 'Виноград', 'Сырный соус'],
-  ['Говядина', 'Помидоры', 'Кетчуп'],
-  ['Креветки', 'Устрицы', 'Мидии', 'Лимон', 'Огурец'],
-  ['Ананас', 'Арбуз', 'Киви', 'Драгонфрукт', 'Виноград', 'Гранат', 'Персик'],
-  ['Тропикал', 'Биттер-фреш', 'Оранж-микс', 'Блади-берри'],
-];
-
 class DishDetailPage extends StatelessWidget {
   final DishNameModel dishNameModel;
   const DishDetailPage({

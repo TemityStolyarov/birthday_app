@@ -145,7 +145,7 @@ class CustomDateTextField extends CustomTextField {
       readOnly: true,
       onTap: () => _selectDate(context, controller),
       decoration: InputDecoration(
-        suffixIconColor: secondaryAccentColor,
+        suffixIconColor: secondaryFontColor,
         filled: true,
         border: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(4.sp),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobyte_birthday/core/constants.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -37,6 +38,7 @@ class CustomAppBar extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context)
                       .pushNamedAndRemoveUntil('/', (route) => false);
+                  Hive.close();
                 },
               ),
             ),
