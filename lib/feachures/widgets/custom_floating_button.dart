@@ -23,9 +23,7 @@ class CustomFloatingButton extends StatelessWidget {
           color: backgroundColor,
           shape: BoxShape.circle,
         ),
-        child: PlusIcon(
-          size: size,
-        ),
+        child: PlusIcon(size: size),
       ),
     );
   }

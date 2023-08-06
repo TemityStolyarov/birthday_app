@@ -56,11 +56,13 @@ class _AddGiftPanelState extends State<AddGiftPanel> {
             CustomTextField(
               controller: _titleController,
               text: S.of(context).gift_name,
+              required: true,
             ),
             SizedBox(height: 12.sp),
             CustomTextField(
               controller: _subtitleController,
               text: S.of(context).gift_link,
+              required: true,
             ),
             SizedBox(height: 50.sp),
             RoundedButton(

@@ -96,10 +96,7 @@ class _MainPageState extends State<MainPage> {
                           ],
                         ),
                         SizedBox(height: 30.sp),
-                        _Header(
-                          fontSize: 24.sp,
-                          text: S.of(context).header_menu,
-                        ),
+                        _Header(text: S.of(context).header_menu),
                         Padding(
                           padding: EdgeInsets.only(
                             left: 16.sp,
@@ -131,10 +128,7 @@ class _MainPageState extends State<MainPage> {
                           },
                         ),
                         SizedBox(height: 30.sp),
-                        _Header(
-                          fontSize: 24.sp,
-                          text: S.of(context).header_entertaiments,
-                        ),
+                        _Header(text: S.of(context).header_entertaiments),
                         SizedBox(height: 16.sp),
                         EntertaimentsList(
                           isWrapped: _wrappedEntertainments,
@@ -169,10 +163,7 @@ class _MainPageState extends State<MainPage> {
                           },
                         ),
                         SizedBox(height: 30.sp),
-                        _Header(
-                          fontSize: 24.sp,
-                          text: S.of(context).header_place,
-                        ),
+                        _Header(text: S.of(context).header_place),
                         SizedBox(height: 16.sp),
                         const YandexMapKit(),
                         SizedBox(height: 4.sp),
@@ -212,11 +203,9 @@ class _MainPageState extends State<MainPage> {
 
 class _Header extends StatelessWidget {
   final String text;
-  final double? fontSize;
 
   const _Header({
     required this.text,
-    this.fontSize,
   });
 
   @override
@@ -224,7 +213,7 @@ class _Header extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: fontSize,
+        fontSize: 24.sp,
         fontFamily: 'YesevaOne',
       ),
     );

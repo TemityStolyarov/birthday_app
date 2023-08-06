@@ -146,6 +146,20 @@ class S {
     );
   }
 
+  /// `{age, plural, zero{лет} one{год} few{года} other{лет}}`
+  String age(num age) {
+    return Intl.plural(
+      age,
+      zero: 'лет',
+      one: 'год',
+      few: 'года',
+      other: 'лет',
+      name: 'age',
+      desc: '',
+      args: [age],
+    );
+  }
+
   /// `Список гостей`
   String get guestlist {
     return Intl.message(
@@ -211,6 +225,16 @@ class S {
     return Intl.message(
       'Записаться',
       name: 'add_guest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Отредактировать`
+  String get edit_guest {
+    return Intl.message(
+      'Отредактировать',
+      name: 'edit_guest',
       desc: '',
       args: [],
     );
@@ -291,6 +315,16 @@ class S {
     return Intl.message(
       'По возрасту      ▼',
       name: 'sort_by_birthday_des',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Обязательное поле`
+  String get required_field {
+    return Intl.message(
+      'Обязательное поле',
+      name: 'required_field',
       desc: '',
       args: [],
     );

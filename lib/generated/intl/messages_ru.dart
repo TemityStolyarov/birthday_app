@@ -20,7 +20,10 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
-  static String m0(guests) =>
+  static String m0(age) =>
+      "${Intl.plural(age, zero: 'лет', one: 'год', few: 'года', other: 'лет')}";
+
+  static String m1(guests) =>
       "${Intl.plural(guests, zero: 'гостей', one: 'гость', few: 'гостя', other: 'гостей')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -29,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "__": MessageLookupByLibrary.simpleMessage("Wishlist Page"),
         "add_gift": MessageLookupByLibrary.simpleMessage("Добавить подарок"),
         "add_guest": MessageLookupByLibrary.simpleMessage("Записаться"),
+        "age": m0,
+        "edit_guest": MessageLookupByLibrary.simpleMessage("Отредактировать"),
         "gift_link": MessageLookupByLibrary.simpleMessage("Ссылка"),
         "gift_name": MessageLookupByLibrary.simpleMessage("Название"),
         "go_to_site":
@@ -40,11 +45,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest_profession": MessageLookupByLibrary.simpleMessage("Профессия *"),
         "guest_surname": MessageLookupByLibrary.simpleMessage("Фамилия *"),
         "guestlist": MessageLookupByLibrary.simpleMessage("Список гостей"),
-        "guests": m0,
+        "guests": m1,
         "header_entertaiments":
             MessageLookupByLibrary.simpleMessage("Развлечения"),
         "header_menu": MessageLookupByLibrary.simpleMessage("Меню"),
         "header_place": MessageLookupByLibrary.simpleMessage("Место"),
+        "required_field":
+            MessageLookupByLibrary.simpleMessage("Обязательное поле"),
         "sort_by_birthday_asc":
             MessageLookupByLibrary.simpleMessage("По возрасту      ▲"),
         "sort_by_birthday_des":
