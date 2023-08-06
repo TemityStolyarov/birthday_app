@@ -241,20 +241,20 @@ class S {
   }
 
   /// `Вы уверены, что хотите удалить гостя\n{name} {surname} из списка?`
-  String confirm_delete(Object name, Object surname) {
+  String confirm_delete_guest(Object name, Object surname) {
     return Intl.message(
       'Вы уверены, что хотите удалить гостя\n$name $surname из списка?',
-      name: 'confirm_delete',
+      name: 'confirm_delete_guest',
       desc: '',
       args: [name, surname],
     );
   }
 
   /// `Удалить`
-  String get delete_guest {
+  String get delete {
     return Intl.message(
       'Удалить',
-      name: 'delete_guest',
+      name: 'delete',
       desc: '',
       args: [],
     );
@@ -397,6 +397,16 @@ class S {
       name: 'add_gift',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Вы уверены, что хотите удалить подарок {name} из списка?`
+  String confirm_delete_gift(Object name) {
+    return Intl.message(
+      'Вы уверены, что хотите удалить подарок $name из списка?',
+      name: 'confirm_delete_gift',
+      desc: '',
+      args: [name],
     );
   }
 }

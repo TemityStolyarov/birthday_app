@@ -255,7 +255,9 @@ void _showConfirmPanel(BuildContext context, GuestModel guest, int index) {
                     vertical: 16.sp,
                   ),
                   child: Text(
-                    S.of(context).confirm_delete(guest.name, guest.surname),
+                    S
+                        .of(context)
+                        .confirm_delete_guest(guest.name, guest.surname),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14.sp,
@@ -271,7 +273,7 @@ void _showConfirmPanel(BuildContext context, GuestModel guest, int index) {
                     Hive.box('guests').deleteAt(index);
                     Navigator.of(context).pop();
                   },
-                  text: S.of(context).delete_guest,
+                  text: S.of(context).delete,
                   buttonColor: secondaryAccentColor,
                 ),
                 //

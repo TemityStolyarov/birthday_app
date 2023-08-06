@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobyte_birthday/core/constants.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
+import 'package:mobyte_birthday/feachures/widgets/custon_rounded_button.dart';
 import 'package:mobyte_birthday/feachures/wishlist/bloc/wishlist_page_bloc.dart';
 import 'package:mobyte_birthday/feachures/wishlist/models/gift_model.dart';
 import 'package:mobyte_birthday/feachures/wishlist/widgets/add_gift_panel.dart';
@@ -131,6 +132,66 @@ class _GiftsList extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  void _showConfirmPanel(BuildContext context, GiftModel gift, int index) {
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(12.sp),
+        ),
+      ),
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 200.sp,
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.all(16.sp),
+              child: Column(
+                children: [
+                  Container(
+                    height: 4.sp,
+                    width: 35.sp,
+                    decoration: BoxDecoration(
+                      color: tertiaryColor,
+                      borderRadius: BorderRadius.circular(40.sp),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 40.sp,
+                      vertical: 16.sp,
+                    ),
+                    child: Text(
+                      S.of(context).confirm_delete_gift(gift.name),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16.sp),
+                  RoundedButton(
+                    fontSize: 16.sp,
+                    width: 181.sp,
+                    height: 50.sp,
+                    onPressed: () {
+                      Hive.box('gifts').deleteAt(index);
+                      Navigator.of(context).pop();
+                    },
+                    text: S.of(context).delete,
+                    buttonColor: secondaryAccentColor,
+                  ),
+                  //
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -141,7 +202,7 @@ class _GiftsList extends StatelessWidget {
             final giftModel = Hive.box('gifts').getAt(index) as GiftModel;
             return InkWell(
               overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-              onDoubleTap: () => Hive.box('gifts').deleteAt(index),
+              onDoubleTap: () => _showConfirmPanel(context, giftModel, index),
               child: _GiftTile(
                 giftModel: giftModel,
                 giftsBox: giftsBox,

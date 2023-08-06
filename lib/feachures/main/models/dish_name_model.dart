@@ -1,4 +1,3 @@
-//TODO add freezed
 class DishNameModel {
   final String name;
   final int index;
