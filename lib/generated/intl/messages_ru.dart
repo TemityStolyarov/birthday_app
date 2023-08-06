@@ -23,13 +23,15 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(age) =>
       "${Intl.plural(age, zero: 'лет', one: 'год', few: 'года', other: 'лет')}";
 
-  static String m1(name) =>
+  static String m1(index) => "assets/images/carousel${index}.png";
+
+  static String m2(name) =>
       "Вы уверены, что хотите удалить подарок ${name} из списка?";
 
-  static String m2(name, surname) =>
+  static String m3(name, surname) =>
       "Вы уверены, что хотите удалить гостя\n${name} ${surname} из списка?";
 
-  static String m3(guests) =>
+  static String m4(guests) =>
       "${Intl.plural(guests, zero: 'гостей', one: 'гость', few: 'гостя', other: 'гостей')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -38,9 +40,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "__": MessageLookupByLibrary.simpleMessage("Wishlist Page"),
         "add_gift": MessageLookupByLibrary.simpleMessage("Добавить подарок"),
         "add_guest": MessageLookupByLibrary.simpleMessage("Записаться"),
+        "address": MessageLookupByLibrary.simpleMessage(
+            "Центральная ул., 84, хутор Седых"),
         "age": m0,
-        "confirm_delete_gift": m1,
-        "confirm_delete_guest": m2,
+        "asset_src": m1,
+        "confirm_delete_gift": m2,
+        "confirm_delete_guest": m3,
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "edit_guest": MessageLookupByLibrary.simpleMessage("Отредактировать"),
         "gift_link": MessageLookupByLibrary.simpleMessage("Ссылка"),
@@ -56,7 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest_profession": MessageLookupByLibrary.simpleMessage("Профессия *"),
         "guest_surname": MessageLookupByLibrary.simpleMessage("Фамилия *"),
         "guestlist": MessageLookupByLibrary.simpleMessage("Список гостей"),
-        "guests": m3,
+        "guests": m4,
         "header_entertaiments":
             MessageLookupByLibrary.simpleMessage("Развлечения"),
         "header_menu": MessageLookupByLibrary.simpleMessage("Меню"),

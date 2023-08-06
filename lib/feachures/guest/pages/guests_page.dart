@@ -256,9 +256,10 @@ void _showConfirmPanel(BuildContext context, GuestModel guest, int index) {
                     vertical: 16.sp,
                   ),
                   child: Text(
-                    S
-                        .of(context)
-                        .confirm_delete_guest(guest.name, guest.surname),
+                    S.of(context).confirm_delete_guest(
+                          guest.name,
+                          guest.surname,
+                        ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14.sp,
@@ -323,7 +324,10 @@ class _GuestTile extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return EditImagePanel(guest: guest, index: index);
+        return EditImagePanel(
+          guest: guest,
+          index: index,
+        );
       },
     );
   }
@@ -335,7 +339,11 @@ class _GuestTile extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            _showUpdatePhotoPanel(context, guestModel, index);
+            _showUpdatePhotoPanel(
+              context,
+              guestModel,
+              index,
+            );
           },
           child: SizedBox(
             width: 64.sp,
@@ -380,7 +388,10 @@ class _GuestTile extends StatelessWidget {
               ],
             ),
             Text(
-              _calculateAge(guestModel.birthdayDate, context),
+              _calculateAge(
+                guestModel.birthdayDate,
+                context,
+              ),
               style: TextStyle(
                 fontSize: 12.sp,
                 color: secondaryFontColor,
@@ -404,8 +415,11 @@ class _GuestTile extends StatelessWidget {
             padding: EdgeInsets.all(0.sp),
             splashRadius: 20.sp,
             icon: const Icon(Icons.delete_outline_rounded),
-            onPressed: () =>
-                _showConfirmPanel(context, guestsBox.getAt(index), index),
+            onPressed: () => _showConfirmPanel(
+              context,
+              guestsBox.getAt(index),
+              index,
+            ),
           ),
         ),
       ],

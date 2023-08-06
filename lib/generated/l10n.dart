@@ -72,6 +72,26 @@ class S {
     );
   }
 
+  /// `Центральная ул., 84, хутор Седых`
+  String get address {
+    return Intl.message(
+      'Центральная ул., 84, хутор Седых',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `assets/images/carousel{index}.png`
+  String asset_src(Object index) {
+    return Intl.message(
+      'assets/images/carousel$index.png',
+      name: 'asset_src',
+      desc: '',
+      args: [index],
+    );
+  }
+
   /// `Развлечения`
   String get header_entertaiments {
     return Intl.message(

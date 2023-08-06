@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobyte_birthday/feachures/main/widgets/bloc/carousel_bloc.dart';
-
-// int _index = 0;
+import 'package:mobyte_birthday/generated/l10n.dart';
 
 class ImageCarousel extends StatelessWidget {
   const ImageCarousel({super.key});
@@ -22,7 +21,7 @@ class ImageCarousel extends StatelessWidget {
                   width: 375.sp,
                   height: 250.sp,
                   child: Image.asset(
-                    "assets/images/carousel$index.png",
+                    S.of(context).asset_src(index),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -56,17 +55,18 @@ class ImageCarousel extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-              padding: EdgeInsets.only(
-                bottom: 11.sp,
-              ),
-              child: BlocBuilder<CarouselBloc, CarouselState>(
-                builder: (context, state) {
-                  return _CarouselIndicator(
-                    length: data.length,
-                    selected: state.index,
-                  );
-                },
-              )),
+            padding: EdgeInsets.only(
+              bottom: 11.sp,
+            ),
+            child: BlocBuilder<CarouselBloc, CarouselState>(
+              builder: (context, state) {
+                return _CarouselIndicator(
+                  length: data.length,
+                  selected: state.index,
+                );
+              },
+            ),
+          ),
         ),
       ],
     );

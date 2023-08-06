@@ -92,8 +92,10 @@ class _EditImagePanelState extends State<EditImagePanel> {
                         profession: guest.profession,
                         image: _linkController.text,
                       );
-                      Hive.box('guests')
-                          .putAt(widget.index, guestWithUpdatedImage);
+                      Hive.box('guests').putAt(
+                        widget.index,
+                        guestWithUpdatedImage,
+                      );
                       Navigator.of(context).pop();
                     },
                     text: S.of(context).load_image,

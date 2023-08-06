@@ -13,18 +13,6 @@ import 'package:mobyte_birthday/feachures/widgets/custom_floating_button.dart';
 import 'package:mobyte_birthday/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// void onRecervedToggle(int index) {
-//     setState(() {
-//       gifts[index]['reserved'] = !gifts[index]['reserved'];
-//     });
-//   }
-
-//   void onAddGift(Map<String, dynamic> gift) {
-//     setState(() {
-//       gifts.add(gift);
-//     });
-//   }
-
 class WishlistPage extends StatelessWidget {
   const WishlistPage({Key? key}) : super(key: key);
 
@@ -202,7 +190,11 @@ class _GiftsList extends StatelessWidget {
             final giftModel = Hive.box('gifts').getAt(index) as GiftModel;
             return InkWell(
               overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-              onDoubleTap: () => _showConfirmPanel(context, giftModel, index),
+              onDoubleTap: () => _showConfirmPanel(
+                context,
+                giftModel,
+                index,
+              ),
               child: _GiftTile(
                 giftModel: giftModel,
                 giftsBox: giftsBox,

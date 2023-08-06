@@ -118,7 +118,6 @@ class MainPage extends StatelessWidget {
                               context
                                   .read<MainPageBloc>()
                                   .add(MainPageMenuWrapperChangedEvent());
-                              // onMenuWrapperTap();
                             },
                           ),
                           SizedBox(height: 30.sp),
@@ -155,7 +154,6 @@ class MainPage extends StatelessWidget {
                             onPressed: () {
                               context.read<MainPageBloc>().add(
                                   MainPageEntertaimentsWrapperChangedEvent());
-                              // onEntertainmentsWrapperTap();
                             },
                           ),
                           SizedBox(height: 30.sp),
@@ -164,7 +162,7 @@ class MainPage extends StatelessWidget {
                           const YandexMapKit(),
                           SizedBox(height: 4.sp),
                           Text(
-                            'Центральная ул., 84, хутор Седых',
+                            S.of(context).address,
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: secondaryFontColor,
@@ -173,7 +171,7 @@ class MainPage extends StatelessWidget {
                           SizedBox(height: 10.sp),
                           GestureDetector(
                             onTap: () => launchUrl(
-                              Uri.parse('https://yandex.ru/maps/-/CPgiUbr'),
+                              Uri.parse(yandexMap),
                             ),
                             child: Text(
                               S.of(context).go_to_site,

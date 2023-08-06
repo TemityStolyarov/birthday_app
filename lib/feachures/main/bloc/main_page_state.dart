@@ -18,8 +18,10 @@ class MainPageInitialState extends MainPageState {
 }
 
 class MainPageWrapperChangedState extends MainPageState {
-  MainPageWrapperChangedState(bool isMenuWrapped, bool isEntertaimentsWrapped)
-      : super(
+  MainPageWrapperChangedState(
+    bool isMenuWrapped,
+    bool isEntertaimentsWrapped,
+  ) : super(
           isMenuWrapped: isMenuWrapped,
           isEntertaimentsWrapped: isEntertaimentsWrapped,
         );

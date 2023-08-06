@@ -28,10 +28,8 @@ class _AddGiftPanelState extends State<AddGiftPanel> {
   }
 
   void _addGift(GiftModel newGift) {
-    // if (_formKey.currentState!.validate()) {
     Hive.box('gifts').add(newGift);
     Navigator.pop(context);
-    // }
   }
 
   @override
