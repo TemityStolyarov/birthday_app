@@ -220,6 +220,16 @@ class S {
     );
   }
 
+  /// `Ссылка на изображение`
+  String get guest_image {
+    return Intl.message(
+      'Ссылка на изображение',
+      name: 'guest_image',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Записаться`
   String get add_guest {
     return Intl.message(
@@ -255,6 +265,16 @@ class S {
     return Intl.message(
       'Удалить',
       name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Загрузить`
+  String get load_image {
+    return Intl.message(
+      'Загрузить',
+      name: 'load_image',
       desc: '',
       args: [],
     );
@@ -345,6 +365,16 @@ class S {
     return Intl.message(
       'Обязательное поле',
       name: 'required_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вставьте ссылку на новое изображение в поле ниже:`
+  String get input_image {
+    return Intl.message(
+      'Вставьте ссылку на новое изображение в поле ниже:',
+      name: 'input_image',
       desc: '',
       args: [],
     );

@@ -6,6 +6,7 @@ import 'package:mobyte_birthday/core/constants.dart';
 import 'package:mobyte_birthday/feachures/guest/models/guest_model.dart';
 import 'package:mobyte_birthday/feachures/guest/widgets/add_guest_panel.dart';
 import 'package:mobyte_birthday/feachures/guest/widgets/edit_guest_panel.dart';
+import 'package:mobyte_birthday/feachures/guest/widgets/edit_image_panel.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_app_bar.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_floating_button.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
@@ -276,7 +277,6 @@ void _showConfirmPanel(BuildContext context, GuestModel guest, int index) {
                   text: S.of(context).delete,
                   buttonColor: secondaryAccentColor,
                 ),
-                //
               ],
             ),
           ),
@@ -288,19 +288,17 @@ void _showConfirmPanel(BuildContext context, GuestModel guest, int index) {
 
 class _GuestTile extends StatelessWidget {
   final GuestModel guestModel;
-  // final VoidCallback onTapUpdate; might be required in implementing photo update function
   final Box guestsBox;
   final int index;
 
   const _GuestTile({
     Key? key,
     required this.guestModel,
-    // required this.onTapUpdate, might be required in implementing photo update function
     required this.guestsBox,
     required this.index,
   }) : super(key: key);
 
-  String calculateAge(String date, BuildContext context) {
+  String _calculateAge(String date, BuildContext context) {
     final DateTime birthDate = DateFormat('dd.MM.yyyy').parse(date);
     final DateTime currentDate = DateTime.now();
     int age = currentDate.year - birthDate.year;
@@ -314,6 +312,22 @@ class _GuestTile extends StatelessWidget {
     return '$age ${S.of(context).age(age)}';
   }
 
+  void _showUpdatePhotoPanel(
+      BuildContext context, GuestModel guest, int index) {
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(12.sp),
+        ),
+      ),
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return EditImagePanel(guest: guest, index: index);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -321,7 +335,7 @@ class _GuestTile extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            _showTodoPanel(context, 'Uploading photo');
+            _showUpdatePhotoPanel(context, guestModel, index);
           },
           child: SizedBox(
             width: 64.sp,
@@ -366,7 +380,7 @@ class _GuestTile extends StatelessWidget {
               ],
             ),
             Text(
-              calculateAge(guestModel.birthdayDate, context),
+              _calculateAge(guestModel.birthdayDate, context),
               style: TextStyle(
                 fontSize: 12.sp,
                 color: secondaryFontColor,

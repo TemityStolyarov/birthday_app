@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Перейти на сайт места"),
         "guest_birthday":
             MessageLookupByLibrary.simpleMessage("Дата рождения *"),
+        "guest_image":
+            MessageLookupByLibrary.simpleMessage("Ссылка на изображение"),
         "guest_name": MessageLookupByLibrary.simpleMessage("Имя *"),
         "guest_phone": MessageLookupByLibrary.simpleMessage("Телефон"),
         "guest_profession": MessageLookupByLibrary.simpleMessage("Профессия *"),
@@ -59,6 +61,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Развлечения"),
         "header_menu": MessageLookupByLibrary.simpleMessage("Меню"),
         "header_place": MessageLookupByLibrary.simpleMessage("Место"),
+        "input_image": MessageLookupByLibrary.simpleMessage(
+            "Вставьте ссылку на новое изображение в поле ниже:"),
+        "load_image": MessageLookupByLibrary.simpleMessage("Загрузить"),
         "required_field":
             MessageLookupByLibrary.simpleMessage("Обязательное поле"),
         "sort_by_birthday_asc":

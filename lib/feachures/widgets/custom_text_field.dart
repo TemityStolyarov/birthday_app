@@ -178,3 +178,42 @@ class CustomDateTextField extends CustomTextField {
     );
   }
 }
+
+class ImageTextField extends CustomTextField {
+  const ImageTextField({
+    super.key,
+    required super.controller,
+    required super.text,
+    required super.required,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      style: TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w700,
+      ),
+      cursorColor: secondaryAccentColor,
+      decoration: InputDecoration(
+        counterText: '',
+        filled: true,
+        border: UnderlineInputBorder(
+          borderRadius: BorderRadius.circular(4.sp),
+          borderSide: BorderSide.none,
+        ),
+        labelText: text,
+        labelStyle: const TextStyle(
+          fontWeight: FontWeight.w400,
+          color: secondaryFontColor,
+        ),
+        fillColor: textInputBackbroundColor,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 8.sp,
+          horizontal: 12.sp,
+        ),
+      ),
+    );
+  }
+}
