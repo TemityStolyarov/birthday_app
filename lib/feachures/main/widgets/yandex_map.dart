@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class YandexMapKit extends StatelessWidget {
@@ -40,8 +41,8 @@ class YandexMapKit extends StatelessWidget {
             ),
             icon: PlacemarkIcon.single(
               PlacemarkIconStyle(
-                image: BitmapDescriptor.fromAssetImage(
-                    'assets/images/google-maps.png'),
+                image:
+                    BitmapDescriptor.fromAssetImage(S.of(context).asset_marker),
                 scale: 0.15.sp,
               ),
             ),

@@ -106,6 +106,7 @@ class GuestPage extends StatelessWidget {
                                     ),
                                     GestureDetector(
                                       onTap: () {
+                                        //TODO sorting (Task 2)
                                         _showTodoPanel(context, 'Sorting');
                                       },
                                       child: Text(
@@ -119,9 +120,7 @@ class GuestPage extends StatelessWidget {
                                   ],
                                 ),
                                 SizedBox(height: 16.sp),
-                                const _GuestsList(
-                                    //TODO onImageChange: onImageChange,
-                                    ),
+                                const _GuestsList(),
                               ],
                             ),
                           ),
@@ -354,7 +353,7 @@ class _GuestTile extends StatelessWidget {
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Image.asset(
-                    'assets/images/person.png',
+                    S.of(context).asset_guest,
                     fit: BoxFit.cover,
                   );
                 },

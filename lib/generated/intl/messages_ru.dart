@@ -25,13 +25,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(index) => "assets/images/carousel${index}.png";
 
-  static String m2(name) =>
+  static String m2(dish) => "assets/images/image${dish}.jpg";
+
+  static String m3(index) => "assets/images/frame${index}.png";
+
+  static String m4(index) => "assets/images/image${index}.jpg";
+
+  static String m5(name) =>
       "Вы уверены, что хотите удалить подарок ${name} из списка?";
 
-  static String m3(name, surname) =>
+  static String m6(name, surname) =>
       "Вы уверены, что хотите удалить гостя\n${name} ${surname} из списка?";
 
-  static String m4(guests) =>
+  static String m7(guests) =>
       "${Intl.plural(guests, zero: 'гостей', one: 'гость', few: 'гостя', other: 'гостей')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -43,9 +49,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage(
             "Центральная ул., 84, хутор Седых"),
         "age": m0,
-        "asset_src": m1,
-        "confirm_delete_gift": m2,
-        "confirm_delete_guest": m3,
+        "asset_carousel": m1,
+        "asset_dish": m2,
+        "asset_entertaiment": m3,
+        "asset_guest":
+            MessageLookupByLibrary.simpleMessage("assets/images/person.png"),
+        "asset_marker": MessageLookupByLibrary.simpleMessage(
+            "assets/images/google-maps.png"),
+        "asset_menu": m4,
+        "asset_receipt":
+            MessageLookupByLibrary.simpleMessage("assets/images/receipt.png"),
+        "confirm_delete_gift": m5,
+        "confirm_delete_guest": m6,
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "edit_guest": MessageLookupByLibrary.simpleMessage("Отредактировать"),
         "gift_link": MessageLookupByLibrary.simpleMessage("Ссылка"),
@@ -61,7 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guest_profession": MessageLookupByLibrary.simpleMessage("Профессия *"),
         "guest_surname": MessageLookupByLibrary.simpleMessage("Фамилия *"),
         "guestlist": MessageLookupByLibrary.simpleMessage("Список гостей"),
-        "guests": m4,
+        "guests": m7,
         "header_entertaiments":
             MessageLookupByLibrary.simpleMessage("Развлечения"),
         "header_menu": MessageLookupByLibrary.simpleMessage("Меню"),

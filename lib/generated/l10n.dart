@@ -83,12 +83,72 @@ class S {
   }
 
   /// `assets/images/carousel{index}.png`
-  String asset_src(Object index) {
+  String asset_carousel(Object index) {
     return Intl.message(
       'assets/images/carousel$index.png',
-      name: 'asset_src',
+      name: 'asset_carousel',
       desc: '',
       args: [index],
+    );
+  }
+
+  /// `assets/images/image{index}.jpg`
+  String asset_menu(Object index) {
+    return Intl.message(
+      'assets/images/image$index.jpg',
+      name: 'asset_menu',
+      desc: '',
+      args: [index],
+    );
+  }
+
+  /// `assets/images/image{dish}.jpg`
+  String asset_dish(Object dish) {
+    return Intl.message(
+      'assets/images/image$dish.jpg',
+      name: 'asset_dish',
+      desc: '',
+      args: [dish],
+    );
+  }
+
+  /// `assets/images/frame{index}.png`
+  String asset_entertaiment(Object index) {
+    return Intl.message(
+      'assets/images/frame$index.png',
+      name: 'asset_entertaiment',
+      desc: '',
+      args: [index],
+    );
+  }
+
+  /// `assets/images/receipt.png`
+  String get asset_receipt {
+    return Intl.message(
+      'assets/images/receipt.png',
+      name: 'asset_receipt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `assets/images/person.png`
+  String get asset_guest {
+    return Intl.message(
+      'assets/images/person.png',
+      name: 'asset_guest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `assets/images/google-maps.png`
+  String get asset_marker {
+    return Intl.message(
+      'assets/images/google-maps.png',
+      name: 'asset_marker',
+      desc: '',
+      args: [],
     );
   }
 

@@ -21,7 +21,7 @@ class ImageCarousel extends StatelessWidget {
                   width: 375.sp,
                   height: 250.sp,
                   child: Image.asset(
-                    S.of(context).asset_src(index),
+                    S.of(context).asset_carousel(index),
                     fit: BoxFit.cover,
                   ),
                 ),

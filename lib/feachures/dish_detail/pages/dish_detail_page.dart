@@ -4,6 +4,7 @@ import 'package:mobyte_birthday/core/constants.dart';
 import 'package:mobyte_birthday/feachures/main/models/dish_name_model.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_app_bar.dart';
 import 'package:mobyte_birthday/feachures/widgets/custom_scaffold.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 
 class DishDetailPage extends StatelessWidget {
   final DishNameModel dishNameModel;
@@ -61,7 +62,7 @@ class DishDetailPage extends StatelessWidget {
                               width: 357.sp,
                               height: 264.sp,
                               child: Image.asset(
-                                'assets/images/image${dishNameModel.index}.jpg',
+                                S.of(context).asset_dish(dishNameModel.index),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -127,7 +128,7 @@ class _ReceiptItem extends StatelessWidget {
     return Row(
       children: [
         Image.asset(
-          'assets/images/receipt.png',
+          S.of(context).asset_receipt,
           height: 24.sp,
           width: 24.sp,
           fit: BoxFit.cover,

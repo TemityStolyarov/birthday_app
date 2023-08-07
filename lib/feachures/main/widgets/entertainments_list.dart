@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/core/constants.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 
 class EntertaimentsList extends StatelessWidget {
   final List titles;
@@ -26,9 +27,9 @@ class EntertaimentsList extends StatelessWidget {
             title: titles[index],
             subtitle: subtitles[index],
             onPressedRight: () {
-              //TODO animation
+              //TODO animation ?
             },
-            image: 'assets/images/frame$index.png',
+            image: S.of(context).asset_entertaiment(index),
           );
         },
         itemCount: isWrapped ? 2 : titles.length,

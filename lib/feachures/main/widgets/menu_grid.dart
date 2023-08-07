@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_birthday/feachures/main/models/dish_name_model.dart';
 import 'package:mobyte_birthday/core/utils/routes/name_routes.dart';
+import 'package:mobyte_birthday/generated/l10n.dart';
 
 class MenuGrid extends StatelessWidget {
   final bool isWrapped;
@@ -63,7 +64,7 @@ class MenuGrid extends StatelessWidget {
                                 bottomRight: Radius.circular(25.sp),
                               ),
                         child: Image.asset(
-                          'assets/images/image$index.jpg',
+                          S.of(context).asset_menu(index),
                           fit: BoxFit.cover,
                         ),
                       ),
