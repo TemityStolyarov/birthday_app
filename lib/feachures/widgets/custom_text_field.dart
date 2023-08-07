@@ -20,7 +20,6 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      maxLength: 30,
       style: TextStyle(
         fontSize: 16.sp,
         fontWeight: FontWeight.w700,
