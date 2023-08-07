@@ -90,6 +90,7 @@ class _EditImagePanelState extends State<EditImagePanel> {
                         surname: guest.surname,
                         birthdayDate: guest.birthdayDate,
                         profession: guest.profession,
+                        phone: guest.phone,
                         image: _linkController.text,
                       );
                       Hive.box('guests').putAt(

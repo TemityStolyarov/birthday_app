@@ -121,6 +121,7 @@ class _EditGuestPanelState extends State<EditGuestPanel> {
                     birthdayDate: _birthdayDateController.text,
                     phone: _phoneNumberController.text,
                     profession: _professionController.text,
+                    image: guest.image,
                   );
                   _editGuest(newGuest, widget.index);
                 },
