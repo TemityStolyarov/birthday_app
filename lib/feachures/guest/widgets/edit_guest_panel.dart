@@ -28,6 +28,13 @@ class _EditGuestPanelState extends State<EditGuestPanel> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    GuestModel guest = Hive.box('guests').getAt(widget.index);
+    _presetValues(guest);
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _nameController.dispose();
     _surnameController.dispose();
@@ -55,8 +62,6 @@ class _EditGuestPanelState extends State<EditGuestPanel> {
   @override
   Widget build(BuildContext context) {
     GuestModel guest = Hive.box('guests').getAt(widget.index);
-    _presetValues(guest);
-
     return SingleChildScrollView(
       padding: EdgeInsets.only(
         bottom:
